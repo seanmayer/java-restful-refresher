@@ -16,7 +16,7 @@ public class UserController {
 
   @GetMapping(value="")
   public String getUser(@RequestBody UserDetailsRequestModel userDetails) {
-    return "Get user was called";
+    return null;
   }
 
   @PostMapping(value="")
