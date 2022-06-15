@@ -3,7 +3,7 @@ package com.appsdeveloperblog.app.ws.shared.dto;
 import java.io.Serializable;
 
 public class UserDto implements Serializable {
- 
+
   private static final long serialVersionUID = -89898989898989898L;
   private long id;
   private String userId;
@@ -77,5 +77,13 @@ public class UserDto implements Serializable {
 
   public void setEmailVerificationToken(String emailVerificationToken) {
     this.emailVerificationToken = emailVerificationToken;
+  }
+
+  public Boolean getEmailVerificationStatus() {
+    return emailVerificationStatus;
+  }
+
+  public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
+    this.emailVerificationStatus = emailVerificationStatus;
   }
 }
