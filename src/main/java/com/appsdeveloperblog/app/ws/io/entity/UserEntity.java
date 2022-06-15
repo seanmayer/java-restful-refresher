@@ -32,8 +32,8 @@ public class UserEntity implements Serializable {
 
  private String emailVerificationToken;
 
-@Column(nullable=false, columnDefinition = "boolean default false")
- private Boolean emailVerificationStatus;
+@Column(nullable=false)
+ private Boolean emailVerificationStatus = false;
 
  public String getUserId() {
   return userId;
