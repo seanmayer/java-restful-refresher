@@ -2,6 +2,10 @@ package com.appsdeveloperblog.app.ws.shared.dto;
 
 import java.io.Serializable;
 
+//import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+//import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+//@JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 public class UserDto implements Serializable {
 
   private static final long serialVersionUID = -89898989898989898L;
@@ -87,4 +91,4 @@ public class UserDto implements Serializable {
   public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
     this.emailVerificationStatus = emailVerificationStatus;
   }
-}
+ }

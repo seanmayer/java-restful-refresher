@@ -1,7 +1,6 @@
 package com.appsdeveloperblog.app.ws.io.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -90,5 +89,4 @@ public class UserEntity implements Serializable {
  public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
   this.emailVerificationStatus = emailVerificationStatus;
  }
- 
 }

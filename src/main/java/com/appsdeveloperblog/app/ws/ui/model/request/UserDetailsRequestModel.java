@@ -1,5 +1,7 @@
 package com.appsdeveloperblog.app.ws.ui.model.request;
 
+//POJO Java Bean
+//ui layer - sends request to service layer
 public class UserDetailsRequestModel {
 
   private String firstName;
@@ -38,5 +40,4 @@ public class UserDetailsRequestModel {
   public void setPassword(String password) {
     this.password = password;
   }
-
 }

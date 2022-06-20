@@ -1,5 +1,7 @@
 package com.appsdeveloperblog.app.ws.ui.model.response;
 
+//response details hides password
+//ui layer - sends response to client
 public class UserRest {
  private String userId;
  private String firstName;
@@ -37,5 +39,4 @@ public class UserRest {
  public void setEmail(String email) {
   this.email = email;
  }
-
 }
