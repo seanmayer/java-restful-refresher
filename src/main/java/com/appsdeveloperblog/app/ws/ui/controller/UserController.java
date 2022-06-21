@@ -11,17 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.appsdeveloperblog.app.ws.service.UserService;
-//import com.appsdeveloperblog.app.ws.service.UserService;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
 import com.appsdeveloperblog.app.ws.ui.model.request.UserDetailsRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
 
-
 @RestController
-@RequestMapping("/users") // http://localhost:8080/users
+@RequestMapping("users") // http://localhost:8080/users
 public class UserController {
 
- @Autowired(required=false)
+ @Autowired(required=true)
  UserService userService;
 
   @GetMapping(value="")
@@ -36,8 +34,8 @@ public class UserController {
     UserDto userDto = new UserDto();
     BeanUtils.copyProperties(userDetails, userDto);
 
-    //UserDto createdUser = userService.createUser(userDto);
-    //BeanUtils.copyProperties(createdUser, returnValue);
+    UserDto createdUser = userService.createUser(userDto);
+    BeanUtils.copyProperties(createdUser, returnValue);
 
     return returnValue;
   }
