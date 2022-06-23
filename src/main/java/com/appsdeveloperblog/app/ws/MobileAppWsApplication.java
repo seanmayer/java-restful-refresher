@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"com.appsdeveloperblog.app.ws.ui.controller", "com.appsdeveloperblog.app.ws.service"})
+@ComponentScan({"com.appsdeveloperblog.app.ws"})
 public class MobileAppWsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MobileAppWsApplication.class, args);
