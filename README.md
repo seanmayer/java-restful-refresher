@@ -12,8 +12,8 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 2. VSCode extensions: 
 - Spring Boot Dashboard
 - Spring Boot Extension Pack
-- Spring boot Tools
-- Spring Initializer Java Suppot
+- Spring Boot Tools
+- Spring Initializer Java Support
 - Test Runner for Java
 - Maven for Java
 - Debugger for Java
