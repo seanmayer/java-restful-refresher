@@ -1,5 +1,9 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
+import com.appsdeveloperblog.app.ws.service.UserService;
+import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
+import com.appsdeveloperblog.app.ws.ui.model.request.UserDetailsRequestModel;
+import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,24 +14,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.appsdeveloperblog.app.ws.service.UserService;
-import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
-import com.appsdeveloperblog.app.ws.ui.model.request.UserDetailsRequestModel;
-import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
-
 @RestController
 @RequestMapping("users") // http://localhost:8080/users
 public class UserController {
 
- @Autowired(required=true)
- UserService userService;
+  @Autowired(required = true)
+  UserService userService;
 
-  @GetMapping(value="")
+  @GetMapping(value = "")
   public String getUser() {
-    return null;
+    return "get user was called";
   }
 
-  @PostMapping(value="")
+  @PostMapping(value = "")
   public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) {
     UserRest returnValue = new UserRest();
 
@@ -40,12 +39,12 @@ public class UserController {
     return returnValue;
   }
 
-  @PutMapping(value="")
+  @PutMapping(value = "")
   public String updateUser() {
     return "Update user was called";
   }
 
-  @DeleteMapping(value="")
+  @DeleteMapping(value = "")
   public String deleteUser() {
     return "Delete user was called";
   }
