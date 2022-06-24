@@ -2,6 +2,8 @@ package com.appsdeveloperblog.app.ws.service.impl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.appsdeveloperblog.app.ws.UserRepository;
@@ -19,6 +21,9 @@ public class UserServiceImpl implements UserService {
  @Autowired
  Utils utils;
 
+ @Autowired
+ BCryptPasswordEncoder bCryptPasswordEncoder;
+
  @Override
  public UserDto createUser(UserDto user) {
 
@@ -30,7 +35,7 @@ public class UserServiceImpl implements UserService {
   UserEntity userEntity = new UserEntity(); 
   BeanUtils.copyProperties(user, userEntity);
 
-  userEntity.setEncryptPassword("test");
+  userEntity.setEncryptPassword(bCryptPasswordEncoder.encode(user.getPassword()));
   userEntity.setUserId(publicUserId);
 
   UserEntity storedUserDetails = userRepository.save(userEntity);
