@@ -5,11 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Encoders;
+import io.jsonwebtoken.security.Keys;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -60,11 +63,12 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
   )
     throws IOException, ServletException {
      String userName = ((User) auth.getPrincipal()).getUsername();
-
+     SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+     String base64Key = Encoders.BASE64.encode(key.getEncoded());
      String token = Jwts.builder()
      .setSubject(userName)
      .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
-     .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET)
+     .signWith(SignatureAlgorithm.HS512, base64Key)
      .compact();
 
     res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
