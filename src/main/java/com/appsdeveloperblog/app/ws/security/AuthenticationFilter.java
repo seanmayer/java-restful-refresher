@@ -1,17 +1,17 @@
 package com.appsdeveloperblog.app.ws.security;
 
+import com.appsdeveloperblog.app.ws.SpringApplicationContext;
+import com.appsdeveloperblog.app.ws.service.UserService;
+import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
 import com.appsdeveloperblog.app.ws.ui.model.request.UserLoginRequestModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -62,15 +62,31 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     Authentication auth
   )
     throws IOException, ServletException {
-     String userName = ((User) auth.getPrincipal()).getUsername();
-     SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-     String base64Key = Encoders.BASE64.encode(key.getEncoded());
-     String token = Jwts.builder()
-     .setSubject(userName)
-     .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
-     .signWith(SignatureAlgorithm.HS512, base64Key)
-     .compact();
+    String userName = ((User) auth.getPrincipal()).getUsername();
+    SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    String base64Key = Encoders.BASE64.encode(key.getEncoded());
+    String token = Jwts
+      .builder()
+      .setSubject(userName)
+      .setExpiration(
+        new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME)
+      )
+      .signWith(SignatureAlgorithm.HS512, base64Key)
+      .compact();
 
-    res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
+    UserService userService = (UserService) SpringApplicationContext.getBean(
+      "userServiceImpl"
+    );
+    UserDto userDto = userService.getUser(userName);
+
+    res.addHeader(
+      SecurityConstants.HEADER_STRING,
+      SecurityConstants.TOKEN_PREFIX + token
+    );
+
+    res.addHeader(
+      "userId",
+      userDto.getUserId()
+    );
   }
 }
