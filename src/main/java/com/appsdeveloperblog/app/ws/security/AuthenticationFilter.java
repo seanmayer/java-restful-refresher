@@ -63,16 +63,20 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
   )
     throws IOException, ServletException {
     String userName = ((User) auth.getPrincipal()).getUsername();
-    SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-    String base64Key = Encoders.BASE64.encode(key.getEncoded());
-    String token = Jwts
+    //SecretKey key = TokenUtil.getSecretKey();
+    //String base64Key = Encoders.BASE64.encode(key.getEncoded());
+
+    String token = TokenUtil.generateToken(userName);
+
+    
+/*     String token = Jwts
       .builder()
       .setSubject(userName)
       .setExpiration(
         new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME)
       )
       .signWith(SignatureAlgorithm.HS512, base64Key)
-      .compact();
+      .compact(); */
 
     UserService userService = (UserService) SpringApplicationContext.getBean(
       "userServiceImpl"

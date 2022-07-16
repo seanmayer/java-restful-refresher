@@ -51,12 +51,11 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
     if (token != null) {
       token = token.replace(SecurityConstants.TOKEN_PREFIX, "");
 
-      //Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-      //in progress
+      Key key = TokenUtil.getSecretKey();
 
       String user = Jwts
         .parserBuilder()
-        //.setSigningKeyResolver(signingKeyResolver)
+        .setSigningKey(key)
         .build()
         .parseClaimsJws(token)
         .getBody()
