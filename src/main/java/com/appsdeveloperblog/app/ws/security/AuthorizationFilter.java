@@ -1,14 +1,9 @@
 package com.appsdeveloperblog.app.ws.security;
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Encoders;
-import io.jsonwebtoken.security.Keys;
 import java.io.IOException;
 import java.security.Key;
 import java.util.ArrayList;
-import java.util.Date;
-import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -50,8 +45,9 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
 
     if (token != null) {
       token = token.replace(SecurityConstants.TOKEN_PREFIX, "");
-
       Key key = TokenUtil.getSecretKey();
+
+      TokenUtil.verifyToken(token);
 
       String user = Jwts
         .parserBuilder()

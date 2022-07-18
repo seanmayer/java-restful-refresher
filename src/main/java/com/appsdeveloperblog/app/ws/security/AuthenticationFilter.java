@@ -5,14 +5,8 @@ import com.appsdeveloperblog.app.ws.service.UserService;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
 import com.appsdeveloperblog.app.ws.ui.model.request.UserLoginRequestModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Encoders;
-import io.jsonwebtoken.security.Keys;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -63,20 +57,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
   )
     throws IOException, ServletException {
     String userName = ((User) auth.getPrincipal()).getUsername();
-    //SecretKey key = TokenUtil.getSecretKey();
-    //String base64Key = Encoders.BASE64.encode(key.getEncoded());
-
     String token = TokenUtil.generateToken(userName);
-
-    
-/*     String token = Jwts
-      .builder()
-      .setSubject(userName)
-      .setExpiration(
-        new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME)
-      )
-      .signWith(SignatureAlgorithm.HS512, base64Key)
-      .compact(); */
 
     UserService userService = (UserService) SpringApplicationContext.getBean(
       "userServiceImpl"
@@ -88,9 +69,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
       SecurityConstants.TOKEN_PREFIX + token
     );
 
-    res.addHeader(
-      "userId",
-      userDto.getUserId()
-    );
+    res.addHeader("userId", userDto.getUserId());
   }
 }
