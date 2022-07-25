@@ -39,9 +39,11 @@ public class UserController {
   }
 
   @PostMapping(
-    value = "",
+    consumes = {
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE
+    },
     produces = {
-      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE
     }
   )
   public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) {
