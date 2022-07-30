@@ -42,16 +42,17 @@ public class UserController {
 
   @PostMapping(
     consumes = {
-      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
     },
     produces = {
-      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
     }
   )
-  public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) throws Exception {
+  public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails)
+    throws Exception {
     UserRest returnValue = new UserRest();
 
-    if(userDetails.getFirstName().isEmpty()) {
+    if (userDetails.getFirstName().isEmpty()) {
       throw new NullPointerException("The object is null");
     }
 
@@ -64,8 +65,16 @@ public class UserController {
     return returnValue;
   }
 
-  @PutMapping(value = "")
-  public String updateUser() {
+  @PutMapping(
+    path = "/{id}",
+    consumes = {
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
+    },
+    produces = {
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
+    }
+  )
+  public String updateUser(@PathVariable String id, @RequestBody UserDetailsRequestModel userDetails) {
     return "Update user was called";
   }
 
