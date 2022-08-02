@@ -8,7 +8,6 @@ import com.appsdeveloperblog.app.ws.shared.Utils;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
 import com.appsdeveloperblog.app.ws.ui.model.response.ErrorMessage;
 import com.appsdeveloperblog.app.ws.ui.model.response.ErrorMessages;
-
 import java.util.ArrayList;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,20 +86,20 @@ public class UserServiceImpl implements UserService {
   public UserDto getUserByUserId(String userId) {
     UserDto returnValue = new UserDto();
     UserEntity userEntity = userRepository.findByUserId(userId);
-    if (userEntity == null) 
-      throw new UsernameNotFoundException(userId);
+    if (userEntity == null) throw new UsernameNotFoundException("User with ID " + userId + " not found");
     BeanUtils.copyProperties(userEntity, returnValue);
     return returnValue;
   }
 
   @Override
   public UserDto updateUser(String userId, UserDto user) {
-    
     UserDto returnValue = new UserDto();
     UserEntity userEntity = userRepository.findByUserId(userId);
 
     if (userEntity == null) {
-      throw new UserServiceException(ErrorMessages.RECORD_NOT_FOUND.getErrorMessage());
+      throw new UserServiceException(
+        ErrorMessages.RECORD_NOT_FOUND.getErrorMessage()
+      );
     }
 
     userEntity.setFirstName(user.getFirstName());
@@ -113,5 +112,14 @@ public class UserServiceImpl implements UserService {
     return returnValue;
   }
 
-  
+  @Override
+  public void deleteUser(String userId) {
+    UserEntity userEntity = userRepository.findByUserId(userId);
+    if (userEntity == null) {
+      throw new UserServiceException(
+        ErrorMessages.RECORD_NOT_FOUND.getErrorMessage()
+      );
+    }
+    userRepository.delete(userEntity);
+  }
 }
