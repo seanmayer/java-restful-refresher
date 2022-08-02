@@ -74,8 +74,20 @@ public class UserController {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
     }
   )
-  public String updateUser(@PathVariable String id, @RequestBody UserDetailsRequestModel userDetails) {
-    return "Update user was called";
+  public UserRest updateUser(@PathVariable String id, @RequestBody UserDetailsRequestModel userDetails) {
+    UserRest returnValue = new UserRest();
+
+    if (userDetails.getFirstName().isEmpty()) {
+      throw new NullPointerException("The object is null");
+    }
+
+    UserDto userDto = new UserDto();
+    BeanUtils.copyProperties(userDetails, userDto);
+
+    UserDto updateUser = userService.updateUser(id, userDto);
+    BeanUtils.copyProperties(updateUser, returnValue);
+
+    return returnValue;
   }
 
   @DeleteMapping(value = "")
