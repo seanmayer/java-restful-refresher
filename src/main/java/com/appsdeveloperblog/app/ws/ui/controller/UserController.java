@@ -116,11 +116,11 @@ public class UserController {
   }
 
   @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-  public List<UserRest> getUsers(@RequestParam(value = "page", defaultValue = "1") int page,
+  public List<UserRest> getUsers(@RequestParam(value = "page", defaultValue = "0") int page,
     @RequestParam(value = "limit", defaultValue = "25") int limit) {
 
     List<UserRest> returnValue = new ArrayList<>();
-    List<UserDto> users = UserService.getUsers(page,limit);
+    List<UserDto> users = userService.getUsers(page, limit);
 
     for (UserDto userDto : users) {
       UserRest userRest = new UserRest();
