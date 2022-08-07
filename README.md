@@ -22,6 +22,11 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 - XML
 3. Start webservices: `./mvnw spring-boot:run` or VSCode UI
 
+## Running Webservices without STS
+1. Navigate to `mobile-app-ws` directroy folder
+2. Run `./mvnw install` this will compile, run the project and unit tests
+3. Run `./mvnw spring-boot:run` this will run the RESTful webservices application in a apache tomcat server container
+
 ## Spring Security
 ### Adding Spring Security to a project
 1. Update `Pom.xml`
