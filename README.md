@@ -32,12 +32,30 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 2. Run `./mvnw install` this will compile, build the project and unit tests
 3. Run `./mvnw spring-boot:run` this will run the RESTful webservices application in a apache tomcat server container
 
-### Running Application as a Java App
+### Running Application as a Java App (with a Apache tomcat container)
 1. `Run `./mvnw install` this will compile, build the project and unit tests (create jar in target)
 2. `cd /mobile-app-ws/target`
 3. `cp mobile-app-ws-0.0.1-SNAPSHOT.jar /Users/{user-name}/Desktop`
 4. Navigate to desktop where the jar has been copied
 5. `java -jar mobile-app-ws-0.0.1-SNAPSHOT.jar`
+
+### Running Application as a War file (on an existing Apache tomcat container [Mac])
+1. Update `pom.xml` -> `<packaging>war</packaging>`
+2. `./mvnw clean` clears out target folder
+3. `./mvnw install` clears out target folder
+4. Install tomcat zip from http://tomcat.apache.org (with the appropriate corrosponding java version)
+5. Unzip on to desktop
+6. Switch directories to `cd /Desktop/apache-tomcat-9.0.65/bin/
+7. Elevate permissions to make script files executable `chmod a+x *.sh`
+8. Run `./startup.sh`
+9. Navigate to http://localhost:8080 (tomat is running!)
+10. Run `./shutdown.sh`
+11. Create Tomcat user for deployments
+12. Switch directoires to `cd /Desktop/apach-tomcat-9.0.65/conf`
+13. Open `tomcat-users.xml`
+14. Add ``` 
+<role rolename="manager-gui"/>
+<user username="admin" password="admin" roles="manager-gui"/>```
 
 
 
