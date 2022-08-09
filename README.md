@@ -40,9 +40,12 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 5. `java -jar mobile-app-ws-0.0.1-SNAPSHOT.jar`
 
 ### Running Application as a War file (on an existing Apache tomcat container [Mac])
-1. Update `pom.xml` -> `<packaging>war</packaging>`
+1. Update `pom.xml` -> 
+```
+<packaging>war</packaging>
+```
 2. `./mvnw clean` clears out target folder
-3. `./mvnw install` clears out target folder
+3. `./mvnw install` creates the war package in `/target`
 4. Install tomcat zip from http://tomcat.apache.org (with the appropriate corrosponding java version)
 5. Unzip on to desktop
 6. Switch directories to `cd /Desktop/apache-tomcat-9.0.65/bin/
@@ -53,9 +56,16 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 11. Create Tomcat user for deployments
 12. Switch directoires to `cd /Desktop/apach-tomcat-9.0.65/conf`
 13. Open `tomcat-users.xml`
-14. Add ``` 
+14. Add 
+``` 
 <role rolename="manager-gui"/>
-<user username="admin" password="admin" roles="manager-gui"/>```
+<user username="admin" password="admin" roles="manager-gui"/>
+```
+15. Go to maven project directory where the war package has been created `/mobile-app-ws/target/`
+16. Rename `mobile-app-ws-0.0.1-SNAPSHOT.war` -> `mobile-app-ws.war`
+17. Deploy war on tomcat 'WAR file to deploy': 
+![Screenshot](readme/images/tomcat.png)
+18. Webservices are deployed :)
 
 
 
