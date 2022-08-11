@@ -67,7 +67,11 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 ![Screenshot](readme/images/tomcat.png)
 18. Webservices are deployed :)
 
+### Deploying to Amazon Cloud EC2
 
+1. Login to https://aws.amazon.com/
+2. Select availability zone
+![Screenshot](readme/images/aws_select_avail.png)
 
 ## Spring Security
 ### Adding Spring Security to a project
