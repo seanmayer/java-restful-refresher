@@ -70,8 +70,20 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 ### Deploying to Amazon Cloud EC2
 
 1. Login to https://aws.amazon.com/
-2. Select availability zone
+2. Navigate to EC2 Dashboard
+3. Select availability zone
 ![Screenshot](readme/images/aws_select_avail.png)
+4. Select 'Launch instance'
+5. Configuration settings:
+- Name and tags: 'DemoAPIServer'
+- App and OS Images: Amazon Linux (Free tier)
+- Instance type: t2.micro (Free tier)
+- Key pair (login): Create private key for login
+- Storage (volumes): 8GB (Free tier)
+- Network settings: SSH, HTTP, HTTPS, Custom TCP port 8080
+- Advanced settings: Shutdown behaviour: Stop
+6. Launch the instance
+7. Navigate to EC2 Running containers 
 
 ## Spring Security
 ### Adding Spring Security to a project
