@@ -84,6 +84,20 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 - Advanced settings: Shutdown behaviour: Stop
 6. Launch the instance
 7. Navigate to EC2 Running containers 
+8. Get Public IPv4 DNS name to start SSH the connection
+9. SSH into AWS instance:
+- `sudo su` (if required)
+- `chmod 400 PhotoAppEC2Server.cer` (if required)
+- `ssh -i myprivatekey.cer ec2-user@{DNS-name}`
+10. Install updates: `sudo yum update`
+11. Check Java version: `sudo java -version`
+12. Check all Java packages available: `sudo yum list java`
+13. Install Java: `sudo yum install java-1.8.0`
+14. Switch Java version:
+- `sudo /usr/sbin/alternatives --config java`
+- `sudo /usr/sbin/alternatives --config javac`
+
+
 
 ## Spring Security
 ### Adding Spring Security to a project
