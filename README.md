@@ -87,7 +87,7 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 8. Get Public IPv4 DNS name to start SSH the connection
 9. SSH into AWS instance:
 - `sudo su` (if required)
-- `chmod 400 PhotoAppEC2Server.cer` (if required)
+- `chmod 400 myprivatekey.cer` (if required)
 - `ssh -i myprivatekey.cer ec2-user@{DNS-name}`
 10. Install updates: `sudo yum update`
 11. Check Java version: `sudo java -version`
@@ -96,6 +96,49 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 14. Switch Java version:
 - `sudo /usr/sbin/alternatives --config java`
 - `sudo /usr/sbin/alternatives --config javac`
+15. Go to https://tomcat.apache.org/ select the version and get the url link for the `tar.gz` file type
+16. Download tomcat with the link extracted (example):`sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz`
+17. Check file is there: `ls`
+18. Extract files: `sudo tar xvf apache-tomcat-9.0.65.tar.gz -C /usr/share`
+19. Check its extracted: `ls -lrt /usr/share`
+20. Rename tomact directory: `sudo ln -s /usr/share/apache-tomcat-9.0.65 /usr/share/tomcat9`
+21. `ls -lrt /usr/share` is now: `tomcat9 -> /usr/share/apache-tomcat-9.0.65` :)
+22. Create a new tomcat group: 
+- `sudo groupadd --system tomcat`
+- `sudo useradd -d /usr/share/tomcat9 -r -s /bin/false -g tomcat tomcat`
+- `sudo chown -R tomcat:tomcat /usr/share/apache-tomcat-9.0.65` (set tomcat folder permissions for this new user)
+23. Make tomcat start on reboot (will need to create a service file)
+- `sudo vi /etc/systemd/system/tomcat9.service`
+- Copy and paste these setting into this file:
+```
+[Unit]
+Description=Tomcat Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User=tomcat
+Group=tomcat
+
+Environment=JAVA_HOME=/usr/lib/jvm/jre
+Environment='JAVA_OPTS=-Djava.awt.headless=true'
+Environment=CATALINA_HOME=/usr/share/tomcat9
+Environment=CATALINA_BASE=/usr/share/tomcat9
+Environment=CATALINA_PID=/usr/share/tomcat9/temp/tomcat.pid
+Environment='CATALINA_OPTS=-Xms512M -Xmx1024M'
+ExecStart=/usr/share/tomcat9/bin/catalina.sh start
+ExecStop=/usr/share/tomcat9/bin/catalina.sh stop
+
+[Install]
+WantedBy=multi-user.target
+
+```
+- `sudo systemctl daemon-reload`
+24. Start tomcat
+- `sudo systemctl enable tomcat9`
+- `sudo systemctl start tomcat9` (to stop `sudo systemctl stop tomcat9`)
+25. Navigate to tomcat URL
+- {AWS Public IPv4 DNS}.com:8080
 
 
 
