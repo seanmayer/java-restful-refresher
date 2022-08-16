@@ -139,6 +139,14 @@ WantedBy=multi-user.target
 - `sudo systemctl start tomcat9` (to stop `sudo systemctl stop tomcat9`)
 25. Navigate to tomcat URL
 - {AWS Public IPv4 DNS}.com:8080
+26. `sudo vi /usr/share/tomcat9/webapps/manager/META-INF/context.xml`
+- Comment out line (hit INSERT to edit):
+```
+  <!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+  allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
+```
+- esc + `:wq` to save changes
+- sudo systemctl restart tomcat9
 
 
 
