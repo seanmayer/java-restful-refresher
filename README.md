@@ -161,7 +161,26 @@ WantedBy=multi-user.target
 ```
 - esc + `:wq` to save changes
 28. `sudo systemctl restart tomcat9`
-
+#### Install MySQL
+29. `sudo yum install https://dev.mysql.com/get/mysql80-community-release-el7-6.noarch.rpm`
+30. `sudo amazon-linux-extras install epel -y`
+31. `sudo yum install mysql-community-server`
+- Optional: Navigate to `/etc/yum.repos.d/mysql-community.repo` and disable gpg if you trust repos
+```
+gpgcheck=0
+```
+32. `sudo systemctl enable --now mysqld`
+33. `systemctl status mysqld`
+34. `sudo grep 'temporary password' /var/log/mysqld.log`
+35. `sudo mysql_secure_installation`
+- Set new password
+- Remove anonymous users? - Yes
+- Disallow root login remotely? - Yes
+- Remove test Database? - Yes
+- Reload privilege tables now? - Yes
+36. `mysql -u root -p`
+- Login
+#### Create database and Add User
 
 
 
