@@ -69,6 +69,7 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 
 ### Deploying to Amazon Cloud EC2
 
+#### Create EC2 Linux Instance
 1. Login to https://aws.amazon.com/
 2. Navigate to EC2 Dashboard
 3. Select availability zone
@@ -83,12 +84,14 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 - Network settings: SSH, HTTP, HTTPS, Custom TCP port 8080
 - Advanced settings: Shutdown behaviour: Stop
 6. Launch the instance
+#### Connect to EC2 via SSH
 7. Navigate to EC2 Running containers 
 8. Get Public IPv4 DNS name to start SSH the connection
 9. SSH into AWS instance:
 - `sudo su` (if required)
 - `chmod 400 myprivatekey.cer` (if required)
 - `ssh -i myprivatekey.cer ec2-user@{DNS-name}`
+#### Update EC2 and install Java
 10. Install updates: `sudo yum update`
 11. Check Java version: `sudo java -version`
 12. Check all Java packages available: `sudo yum list java`
@@ -96,6 +99,7 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 14. Switch Java version:
 - `sudo /usr/sbin/alternatives --config java`
 - `sudo /usr/sbin/alternatives --config javac`
+#### Download and install Tomcat
 15. Go to https://tomcat.apache.org/ select the version and get the url link for the `tar.gz` file type
 16. Download tomcat with the link extracted (example):`sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz`
 17. Check file is there: `ls`
@@ -103,6 +107,7 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 19. Check its extracted: `ls -lrt /usr/share`
 20. Rename tomact directory: `sudo ln -s /usr/share/apache-tomcat-9.0.65 /usr/share/tomcat9`
 21. `ls -lrt /usr/share` is now: `tomcat9 -> /usr/share/apache-tomcat-9.0.65` :)
+#### Configure remote access to Manager app
 22. Create a new tomcat group: 
 - `sudo groupadd --system tomcat`
 - `sudo useradd -d /usr/share/tomcat9 -r -s /bin/false -g tomcat tomcat`
@@ -140,13 +145,23 @@ WantedBy=multi-user.target
 25. Navigate to tomcat URL
 - {AWS Public IPv4 DNS}.com:8080
 26. `sudo vi /usr/share/tomcat9/webapps/manager/META-INF/context.xml`
-- Comment out line (hit INSERT to edit):
+- Comment out line (key i -> INSERT to edit):
 ```
   <!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
   allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
 ```
 - esc + `:wq` to save changes
 - sudo systemctl restart tomcat9
+#### Configure Tomcat users
+27. `sudo vi /usr/share/tomcat9/conf/tomcat-users.xml`
+- (Copy and paste from the tomcat 401 page) (key i -> INSERT to edit):
+```
+<role rolename="manager-gui"/>
+<user username="tomcat" password="s3cret" roles="manager-gui"/>
+```
+- esc + `:wq` to save changes
+28. `sudo systemctl restart tomcat9`
+
 
 
 
