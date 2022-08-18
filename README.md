@@ -180,8 +180,16 @@ gpgcheck=0
 - Reload privilege tables now? - Yes
 36. `mysql -u root -p`
 - Login
-#### Create database and Add User
-
+#### Create database and add user
+37. Sign into user root: `mysql -u root -p`
+38. `create database photo_app;`
+39. `show databases;`
+40. `create user '{my username here}'@'localhost' identified by '{my password here}';`
+41. `grant all privileges on photo_app.* to '{my username here}'@'localhost';`
+42. Make changes to take affect: `flush privileges;`
+43. `exit`
+44. `mysql -u {my username here} -p;`
+45. `show databases`;
 
 
 ## Spring Security
