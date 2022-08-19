@@ -190,6 +190,16 @@ gpgcheck=0
 43. `exit`
 44. `mysql -u {my username here} -p;`
 45. `show databases`;
+#### Deploy webservices on tomcat 
+46. Navigate to maven webservices project: e.g. `cd mobile-app-ws`
+47. `./mvnw install`
+48. Go to `cd mobile-app-ws/target/mobile-app-ws-0.0.1-SNAPSHOT.war`
+- Rename it if needed
+49. Navigate to tomcat URL
+- {AWS Public IPv4 DNS}.com:8080
+- Login if needed
+- Navigate to tomcat web application manager
+50. Deploy `.war` file to "War file to deploy
 
 
 ## Spring Security
