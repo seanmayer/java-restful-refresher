@@ -201,6 +201,27 @@ gpgcheck=0
 - Navigate to tomcat web application manager
 50. Deploy `.war` file to "War file to deploy
 
+### Deploy with AWS Elastic Beanstalk
+
+One of the fastest and simplest ways of deploying spring boot applications. You simply upload your application and your application will automatically handle your capacity provisioning, load balancing, auto-scaling and application health monitoring. 
+
+So you could use your application in a production environment within just a few minutes, without any infrastrucutre or resource configuration work yourself.
+
+Elastic beanstalk is:
+
+- Easy to use service
+- Deploying applications
+- Scaling applications
+
+As depicted below, you will get an EC2 instance started and configured auotmatically, additionally to that you wll get an autoscaling, so if need your EC2 instance, this can scale up and handle more traffic.
+
+![draw.io](readme/images/beanstalk.png)
+
+To load balance the incoming traffic, Elastic Load Balancer is created and configured for you automatically, the incoming HTTP traffic will be equally balanced between the running EC2 instances.
+
+Amazon RDS can be used here to, Amazon RDS is a relational database and this supports many different types of relational databases, for this demo I will be using MySQL again. Also by using Amazon RDS, you will also get autoscaling included here too, you do not need to aquire specialist or develop additional skills here, Amazon RDS will do it for you! :) 
+
+So as our spring boot application scales up and down it will work with MySQL server that will use Amazon RDS service. By deploying your application with Beanstalk and running your database in Amazon RDS, you access capabilities of production ready environment in just a few minutes! No need to manually configure infrastructure, and no need for installing and maintaining database software, you get this all provided by Amazon. 
 
 ## Spring Security
 ### Adding Spring Security to a project
@@ -212,4 +233,5 @@ gpgcheck=0
 2. Run Project and use generate security password
 3. Navigate to `localhost:8080/login`
 ![Screenshot](readme/images/spring_security.png)
+
 
