@@ -203,6 +203,8 @@ gpgcheck=0
 
 ### Deploy with AWS Elastic Beanstalk
 
+#### Introduction
+
 One of the fastest and simplest ways of deploying spring boot applications. You simply upload your application and your application will automatically handle your capacity provisioning, load balancing, auto-scaling and application health monitoring. 
 
 So you could use your application in a production environment within just a few minutes, without any infrastrucutre or resource configuration work yourself.
@@ -222,6 +224,33 @@ To load balance the incoming traffic, Elastic Load Balancer is created and confi
 Amazon RDS can be used here to, Amazon RDS is a relational database and this supports many different types of relational databases, for this demo I will be using MySQL again. Also by using Amazon RDS, you will also get autoscaling included here too, you do not need to aquire specialist or develop additional skills here, Amazon RDS will do it for you! :) 
 
 So as our spring boot application scales up and down it will work with MySQL server that will use Amazon RDS service. By deploying your application with Beanstalk and running your database in Amazon RDS, you access capabilities of production ready environment in just a few minutes! No need to manually configure infrastructure, and no need for installing and maintaining database software, you get this all provided by Amazon. 
+
+#### Amazon RDS - Creating MySQL Database
+
+1. Login to AWS and search for RDS
+2. Select databases -> create database
+3. Database configuration: (Free tier configuration/none production)
+- Engine type: MySQL
+- Edition: MySQL Community
+- Templates: Free Tier! :)
+- DB instance identifier: `photoappuserapi`
+- Credentials Settings: set username and password
+- Instance configuration: Burstable classes (includes t classes) (db.t3.micro)
+- Storage settings: (keep as they are)
+- Connectivity: 
+- - Public Access: true
+- - VPC: Default
+- - DB Subnet Group: Default
+- - Database port: 3306
+5. Database Authentication: Password authentication
+6. Initial Databse name: `photoappusers_db`
+7. Backups: disable
+8. Encryption: disable
+
+
+
+
+
 
 ## Spring Security
 ### Adding Spring Security to a project
