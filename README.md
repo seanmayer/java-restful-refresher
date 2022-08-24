@@ -247,8 +247,10 @@ So as our spring boot application scales up and down it will work with MySQL ser
 7. Backups: disable
 8. Encryption: disable
 
-
-
+#### Security Group Configuration
+1. Select database instance in AWS and select inbound rules
+2. Select AWS/Aurora TCP - default at port 3306 
+![draw.io](readme/images/aws_security_groups.png)
 
 
 
