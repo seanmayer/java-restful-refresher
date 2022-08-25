@@ -252,7 +252,19 @@ So as our spring boot application scales up and down it will work with MySQL ser
 2. Select AWS/Aurora TCP - default at port 3306 
 ![draw.io](readme/images/aws_security_groups.png)
 
-
+#### Configure App to use MySQL RDS
+1. In the `applicaiton.properties` in the main maven project - update appropriately:
+```
+server.error.whitelabel.enabled=false
+spring.datasource.username={username}
+spring.datasource.password={password}
+spring.datasource.url=jdbc:mysql://{rds-endpoint-address.amazonaws.com}:3306/{database name configuration}
+spring.jpa.hibernate.ddl-auto=update
+tokenSecret=tokenSecret
+server.error.include-stacktrace=never
+server.servlet.context-path=/mobile-app-ws
+```
+2. Run `./mvnw package` (Take the compiled code and package it in its distributable format, such as a JAR or WAR)
 
 ## Spring Security
 ### Adding Spring Security to a project
