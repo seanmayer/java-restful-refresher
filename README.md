@@ -248,12 +248,12 @@ So as our spring boot application scales up and down it will work with MySQL ser
 8. Encryption: disable
 
 #### Security Group Configuration
-1. Select database instance in AWS and select inbound rules
-2. Select AWS/Aurora TCP - default at port 3306 
+9. Select database instance in AWS and select inbound rules
+10. Select AWS/Aurora TCP - default at port 3306 
 ![draw.io](readme/images/aws_security_groups.png)
 
 #### Configure App to use MySQL RDS
-1. In the `applicaiton.properties` in the main maven project - update appropriately:
+11. In the `applicaiton.properties` in the main maven project - update appropriately:
 ```
 server.error.whitelabel.enabled=false
 spring.datasource.username={username}
@@ -264,7 +264,19 @@ tokenSecret=tokenSecret
 server.error.include-stacktrace=never
 server.servlet.context-path=/mobile-app-ws
 ```
-2. Run `./mvnw package` (Take the compiled code and package it in its distributable format, such as a JAR or WAR)
+12. Run `./mvnw package` (Take the compiled code and package it in its distributable format, such as a JAR or WAR)
+
+#### Deploying WAR to AWS Elastic Beanstalk
+13. In AWS search for Elastic Beanstalk, once navigates select:
+- Create Application
+14. Then configure/create web app
+- Application name: `PhotoAppUsersApi`
+- Platform: `Tomcat`
+- Application code: "Upload your code"
+- Source code origin: "local file" -> upload file -> `mobile-app-ws-0.0.1-SNAPSHOT.war`
+- Stat application (The rest of the configuration can be skipped for this)
+15. Elastic Beanstalk App has been deployed :)
+
 
 ## Spring Security
 ### Adding Spring Security to a project
