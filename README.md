@@ -277,6 +277,25 @@ server.servlet.context-path=/mobile-app-ws
 - Stat application (The rest of the configuration can be skipped for this)
 15. Elastic Beanstalk App has been deployed :)
 
+#### Testing AWS Elastic Beanstalk Webservice App
+16. Open Postman
+17. Test the sign up `http://{{aws-beanstalk-instance-name}}/users`
+- Headers: 
+
+- - Content-Type: `application/json`
+
+- - Accept: `application/json`
+
+- Body: 
+
+```JSON
+{
+				"firstName":"Joe",
+				"lastName":"Bloggs",
+				"email":"joe@bloggs.com",
+				"password":"AmazingPassword"
+}
+```
 
 ## Spring Security
 ### Adding Spring Security to a project
