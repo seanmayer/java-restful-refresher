@@ -131,7 +131,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"test1@test1.com\",\n    \"password\":\"password\",\n    \"firstName\": \"sean\",\n    \"lastName\": \"mayer\",\n    \"addresses\": \"\"\n}",
+					"raw": "{\n    \"email\": \"test1@test1.com\",\n    \"password\": \"password\",\n    \"firstName\": \"sean\",\n    \"lastName\": \"mayer\",\n    \"addresses\": [\n        {\n            \"city\":\"London\",\n            \"country\": \"United Kingdom\",\n            \"streetName\": \"123 EastMinster\",\n            \"postcode\": \"ABC 123\",\n            \"type\": \"billing\"\n        },\n        {\n            \"city\":\"London\",\n            \"country\": \"United Kingdom\",\n            \"streetName\": \"123 EastMinster\",\n            \"postcode\": \"ABC 123\",\n            \"type\": \"shipping\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
