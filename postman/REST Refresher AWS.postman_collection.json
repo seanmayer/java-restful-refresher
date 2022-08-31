@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "1374d8e1-5030-4e63-8681-9343940cad01",
+		"name": "REST Refresher AWS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21313989"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"\",\n    \"lastName\": \"\",\n    \"email\": \"test@test.com\",\n    \"password\":\"\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{aws-micro}}:8080/users",
+					"protocol": "http",
+					"host": [
+						"{{aws-micro}}"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI5NWFkYTY4MDNmYzc0ODRkOTZmMTliMWZhMDcwNDI3ZSIsInN1YiI6InNlYW5vQHNlYW5vLmNvbSIsImlhdCI6MTY1OTQxNjU0NSwibmJmIjoxNjU5NDE2NTQ1LCJleHAiOjE2NTk0MTY2NjV9.mV8FylNuf-15svqzQ8OWk_ySSqQpUbcL2ImIZiPCyROaM5jCCDbIWGwOTYc9XBCMHNXfz_QncY8FiZ83xUOZwg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"updateSean\",\n    \"lastName\": \"updateMayer\",\n    \"email\": \"seano@seano.com\",\n    \"password\":\"password\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{aws-micro}}:8080/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"protocol": "http",
+					"host": [
+						"{{aws-micro}}"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign up",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\":\"sean\",\n    \"lastName\":\"mayer\",\n    \"email\":\"seano@seano.com\",\n    \"password\":\"***123Password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{aws-micro}}/users",
+					"protocol": "http",
+					"host": [
+						"{{aws-micro}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzNjFkOWJmMzU0ZmM0YzU3YmQxNDUxYjg2Nzg1N2U2OCIsInN1YiI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2NTk2NzU1NjIsIm5iZiI6MTY1OTY3NTU2MiwiZXhwIjoxNjU5Njc1NjgyfQ.xjYFCB4vbrXTCEu7EoaowK49niqGTb1pcdpdwONV4kCWh7XzCVjYOTSfIghniulvZpFwDDbsIWLNdjOLo0wKrw",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{aws-micro}}:8080/users?page=1&limit=50",
+					"protocol": "http",
+					"host": [
+						"{{aws-micro}}"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI5NWFkYTY4MDNmYzc0ODRkOTZmMTliMWZhMDcwNDI3ZSIsInN1YiI6InNlYW5vQHNlYW5vLmNvbSIsImlhdCI6MTY1OTQxNjU0NSwibmJmIjoxNjU5NDE2NTQ1LCJleHAiOjE2NTk0MTY2NjV9.mV8FylNuf-15svqzQ8OWk_ySSqQpUbcL2ImIZiPCyROaM5jCCDbIWGwOTYc9XBCMHNXfz_QncY8FiZ83xUOZwg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{aws-micro}}:8080/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"protocol": "http",
+					"host": [
+						"{{aws-micro}}"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"seano@seano.com\",\n    \"password\":\"***123Password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{aws-micro}}:8080/mobile-app-ws/users/login",
+					"protocol": "http",
+					"host": [
+						"{{aws-micro}}"
+					],
+					"port": "8080",
+					"path": [
+						"mobile-app-ws",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI5NWFkYTY4MDNmYzc0ODRkOTZmMTliMWZhMDcwNDI3ZSIsInN1YiI6InNlYW5vQHNlYW5vLmNvbSIsImlhdCI6MTY1OTQxNjU0NSwibmJmIjoxNjU5NDE2NTQ1LCJleHAiOjE2NTk0MTY2NjV9.mV8FylNuf-15svqzQ8OWk_ySSqQpUbcL2ImIZiPCyROaM5jCCDbIWGwOTYc9XBCMHNXfz_QncY8FiZ83xUOZwg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{aws-micro}}:8080/users/916JP9NWBNsgt2gKk2EKM7N74o17oD?Content-Type=application/json",
+					"protocol": "http",
+					"host": [
+						"{{aws-micro}}"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
+					],
+					"query": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

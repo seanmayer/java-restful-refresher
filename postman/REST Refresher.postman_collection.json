@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "81938849-9fd3-40d0-9f2c-67a559545d29",
+		"name": "REST Refresher",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21313989"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"\",\n    \"lastName\": \"kjjjj\",\n    \"email\": \"test@test.com\",\n    \"password\":\"jjjjjjj\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/users",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI5NWFkYTY4MDNmYzc0ODRkOTZmMTliMWZhMDcwNDI3ZSIsInN1YiI6InNlYW5vQHNlYW5vLmNvbSIsImlhdCI6MTY1OTQxNjU0NSwibmJmIjoxNjU5NDE2NTQ1LCJleHAiOjE2NTk0MTY2NjV9.mV8FylNuf-15svqzQ8OWk_ySSqQpUbcL2ImIZiPCyROaM5jCCDbIWGwOTYc9XBCMHNXfz_QncY8FiZ83xUOZwg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"updateSean\",\n    \"lastName\": \"updateMayer\",\n    \"email\": \"seano@seano.com\",\n    \"password\":\"password\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign up",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"test1@test1.com\",\n    \"password\":\"password\",\n    \"firstName\": \"sean\",\n    \"lastName\": \"mayer\",\n    \"addresses\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/users",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzZmY0NjNhZTY3Zjg0MGRjYWJjNzYwNDM0NjYwMGM1YSIsInN1YiI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2NTk2NzU4MjAsIm5iZiI6MTY1OTY3NTgyMCwiZXhwIjoxNjU5Njc1OTQwfQ.rTHulqTL7lAwErVk9vdEE3J59urTdGE-DyntJghsAHd1F7MpQKdusv0ODq3DMPQ7qdohYq2wMzwemTpOoNnABA",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/users?page=1&limit=2",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI4ZDYzODBmZDUwNmU0ZjNmYWRhMjgzYjJiMWMyNGNjYiIsInN1YiI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2NTk0MTk3MDUsIm5iZiI6MTY1OTQxOTcwNSwiZXhwIjoxNjU5NDE5ODI1fQ.-dJ2f0IgSwAcY6XqeeAjcWdw2yrJEpu_uAONrqNwjZBMb-SqAFRMaxOEHKFPX0Ue4cdsNX6FNFqjpAXbVE7hzg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"test@test.com\",\n    \"password\":\"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/mobile-app-ws/users/login",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"mobile-app-ws",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyZTQ4ODc2YzEzYjE0YTIyODY2YzE5ZDA2ODQ2NDc1NSIsInN1YiI6InNlYW5vQHNlYW5vLmNvbSIsImlhdCI6MTY1OTQxOTI4NywibmJmIjoxNjU5NDE5Mjg3LCJleHAiOjE2NTk0MTk0MDd9.5QWYo7DdeHo7XRCsviE8FTq8-Ng94vZKg9WUr8I_kw9bsNKCOdnZdSh0-PiLYdzQDdiJcUobCRz9p1EE4aFCPA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
