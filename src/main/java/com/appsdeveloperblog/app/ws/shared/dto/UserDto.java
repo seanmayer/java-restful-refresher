@@ -11,6 +11,7 @@ public class UserDto implements Serializable {
 
   private static final long serialVersionUID = -89898989898989898L;
   private long id;
+  private String addressId;
   private String userId;
   private String firstName;
   private String lastName;
@@ -27,6 +28,14 @@ public class UserDto implements Serializable {
 
   public void setId(long id) {
     this.id = id;
+  }
+
+  public String getAddressId() {
+    return addressId;
+  }
+
+  public void setAddressId(String addressId) {
+    this.addressId = addressId;
   }
 
   public String getUserId() {
@@ -100,5 +109,5 @@ public class UserDto implements Serializable {
   public void setAddresses(List<AddressDTO> addresses) {
     this.addresses = addresses;
   }
-  
+
  }
