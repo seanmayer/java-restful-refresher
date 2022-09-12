@@ -1,10 +1,9 @@
 package com.appsdeveloperblog.app.ws.shared.dto;
 
-import java.io.Serializable;
-import java.util.List;
-
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.io.Serializable;
+import java.util.List;
 
 @JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 public class UserDto implements Serializable {
@@ -109,5 +108,4 @@ public class UserDto implements Serializable {
   public void setAddresses(List<AddressDTO> addresses) {
     this.addresses = addresses;
   }
-
- }
+}
