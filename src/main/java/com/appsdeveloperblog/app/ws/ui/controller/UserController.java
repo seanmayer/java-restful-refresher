@@ -8,10 +8,8 @@ import com.appsdeveloperblog.app.ws.ui.model.response.ErrorMessages;
 import com.appsdeveloperblog.app.ws.ui.model.response.OperationStatusModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.RequestOperationStatus;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("users") // http://localhost:8080/users
@@ -71,7 +68,8 @@ public class UserController {
     UserDto userDto = modelMapper.map(userDetails, UserDto.class);
 
     UserDto createdUser = userService.createUser(userDto);
-    BeanUtils.copyProperties(createdUser, returnValue);
+
+    returnValue = modelMapper.map(createdUser, UserRest.class);
 
     return returnValue;
   }
@@ -85,7 +83,10 @@ public class UserController {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
     }
   )
-  public UserRest updateUser(@PathVariable String id, @RequestBody UserDetailsRequestModel userDetails) {
+  public UserRest updateUser(
+    @PathVariable String id,
+    @RequestBody UserDetailsRequestModel userDetails
+  ) {
     UserRest returnValue = new UserRest();
 
     if (userDetails.getFirstName().isEmpty()) {
@@ -105,9 +106,9 @@ public class UserController {
     path = "/{id}",
     produces = {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
-    })
+    }
+  )
   public OperationStatusModel deleteUser(@PathVariable String id) {
-
     OperationStatusModel returnValue = new OperationStatusModel();
     returnValue.setOperationName(RequestOperationName.DELETE.name());
 
@@ -118,10 +119,15 @@ public class UserController {
     return returnValue;
   }
 
-  @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-  public List<UserRest> getUsers(@RequestParam(value = "page", defaultValue = "0") int page,
-    @RequestParam(value = "limit", defaultValue = "25") int limit) {
-
+  @GetMapping(
+    produces = {
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
+    }
+  )
+  public List<UserRest> getUsers(
+    @RequestParam(value = "page", defaultValue = "0") int page,
+    @RequestParam(value = "limit", defaultValue = "25") int limit
+  ) {
     List<UserRest> returnValue = new ArrayList<>();
     List<UserDto> users = userService.getUsers(page, limit);
 
@@ -130,7 +136,7 @@ public class UserController {
       BeanUtils.copyProperties(userDto, userRest);
       returnValue.add(userRest);
     }
-    
+
     return returnValue;
-  }  
+  }
 }
