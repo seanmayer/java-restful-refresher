@@ -1,5 +1,7 @@
 package com.appsdeveloperblog.app.ws.ui.model.response;
 
+import java.util.List;
+
 //response details hides password
 //ui layer - sends response to client
 public class UserRest {
@@ -7,6 +9,7 @@ public class UserRest {
  private String firstName;
  private String lastName;
  private String email;
+ private List<AddressRest> addresses;
 
  public String getUserId() {
   return userId;
@@ -39,4 +42,14 @@ public class UserRest {
  public void setEmail(String email) {
   this.email = email;
  }
+
+
+ public List<AddressRest> getAddresses() {
+  return this.addresses;
+ }
+
+ public void setAddresses(List<AddressRest> addresses) {
+  this.addresses = addresses;
+ }
+
 }
