@@ -1,14 +1,19 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
 import com.appsdeveloperblog.app.ws.service.UserService;
+import com.appsdeveloperblog.app.ws.shared.dto.AddressDTO;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
 import com.appsdeveloperblog.app.ws.ui.model.request.UserDetailsRequestModel;
+import com.appsdeveloperblog.app.ws.ui.model.response.AddressRest;
 import com.appsdeveloperblog.app.ws.ui.model.response.OperationStatusModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.RequestOperationStatus;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -133,6 +138,26 @@ public class UserController {
       UserRest userRest = new UserRest();
       BeanUtils.copyProperties(userDto, userRest);
       returnValue.add(userRest);
+    }
+
+    return returnValue;
+  }
+
+  // http://localhost:8080/mobile-app-ws/users/{id}/addresses
+  @GetMapping(
+    path = "/{id}/addresses",
+    produces = {
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
+    }
+  )
+  public List<AddressRest> getUserAddresses(@PathVariable String id) {
+    List<AddressRest> returnValue = new ArrayList<>();
+    List<AddressDTO> addressesDTO = addressesService.getAddresses(id);
+
+    if(addressesDTO != null && !addressesDTO.isEmpty())
+    {
+        Type listType = new TypeToken<List<AddressRest>>() {}.getType();
+        returnValue = new ModelMapper().map(addressesDTO, listType);
     }
 
     return returnValue;
