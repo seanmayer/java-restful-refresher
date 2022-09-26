@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
+import com.appsdeveloperblog.app.ws.service.AddressService;
 import com.appsdeveloperblog.app.ws.service.UserService;
 import com.appsdeveloperblog.app.ws.shared.dto.AddressDTO;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
@@ -33,6 +34,9 @@ public class UserController {
 
   @Autowired(required = true)
   UserService userService;
+
+  @Autowired(required = true)
+  AddressService addressService;
 
   @GetMapping(
     path = "/{id}",
@@ -152,7 +156,7 @@ public class UserController {
   )
   public List<AddressRest> getUserAddresses(@PathVariable String id) {
     List<AddressRest> returnValue = new ArrayList<>();
-    List<AddressDTO> addressesDTO = addressesService.getAddresses(id);
+    List<AddressDTO> addressesDTO = addressService.getAddresses(id);
 
     if(addressesDTO != null && !addressesDTO.isEmpty())
     {

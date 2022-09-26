@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"\",\n    \"lastName\": \"kjjjj\",\n    \"email\": \"test@test.com\",\n    \"password\":\"jjjjjjj\"\n}\n",
+					"raw": "{\n    \"firstName\": \"testing3\",\n    \"lastName\": \"testing3\",\n    \"email\": \"test10@test10.com\",\n    \"password\": \"testing1\",\n    \"addresses\": [\n        {\n            \"city\": \"test test test\",\n            \"country\": \"test test test\",\n            \"streetName\": \"test test test\",\n            \"postalCode\": \"test\",\n            \"type\": \"test\"\n        },\n        {\n            \"city\": \"test test test\",\n            \"country\": \"test test test\",\n            \"streetName\": \"test test test\",\n            \"postalCode\": \"test\",\n            \"type\": \"test\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -42,13 +42,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/users",
+					"raw": "http://{{local}}:8080/mobile-app-ws/users",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
 					"port": "8080",
 					"path": [
+						"mobile-app-ws",
 						"users"
 					]
 				}
@@ -131,7 +132,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"test1@test1.com\",\n    \"password\": \"password\",\n    \"firstName\": \"sean\",\n    \"lastName\": \"mayer\",\n    \"addresses\": [\n        {\n            \"city\":\"London\",\n            \"country\": \"United Kingdom\",\n            \"streetName\": \"123 EastMinster\",\n            \"postcode\": \"ABC 123\",\n            \"type\": \"billing\"\n        },\n        {\n            \"city\":\"London\",\n            \"country\": \"United Kingdom\",\n            \"streetName\": \"123 EastMinster\",\n            \"postcode\": \"ABC 123\",\n            \"type\": \"shipping\"\n        }\n    ]\n}",
+					"raw": "{\n    \"email\": \"new@new.com\",\n    \"password\": \"password\",\n    \"firstName\": \"sean\",\n    \"lastName\": \"mayer\",\n    \"addresses\": [\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Street\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"billing\"\n        },\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Steet\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"shipping\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -139,13 +140,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/users",
+					"raw": "http://{{local}}:8080/mobile-app-ws/users",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
 					"port": "8080",
 					"path": [
+						"mobile-app-ws",
 						"users"
 					]
 				}
@@ -254,6 +256,57 @@
 			"response": []
 		},
 		{
+			"name": "Find All Addresses by User Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI4NDE5NmE3MDYyMWI0NTRiYmE5NjYwYzhjODc2Yzg4MyIsInN1YiI6Im5ld0BuZXcuY29tIiwiaWF0IjoxNjY0MTc2MjM3LCJuYmYiOjE2NjQxNzYyMzcsImV4cCI6MTY2NDE3NjM1N30.5IBW2Ijap6Sff_-9-5SwsXb63EdOdHdctYLjC3Uw-4kR0B9OWBQC_rOMIF6EAjXPkDCrDud2b7x8uvHnslnJnA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/mobile-app-ws/users/FN73bXMTNQOXlUr0ePJPxrEB5TcStX/addresses",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"mobile-app-ws",
+						"users",
+						"FN73bXMTNQOXlUr0ePJPxrEB5TcStX",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login",
 			"request": {
 				"auth": {
@@ -269,8 +322,7 @@
 					{
 						"key": "Accept",
 						"value": "application/json",
-						"type": "text",
-						"disabled": true
+						"type": "text"
 					},
 					{
 						"key": "Authorization",
@@ -281,7 +333,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"test@test.com\",\n    \"password\":\"password\"\n}",
+					"raw": "{\n    \"email\":\"new@new.com\",\n    \"password\":\"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
