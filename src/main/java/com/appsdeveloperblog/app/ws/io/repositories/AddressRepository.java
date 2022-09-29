@@ -11,4 +11,5 @@ import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
 @Repository
 public interface AddressRepository extends CrudRepository<AddressEntity, Long> {
  List<AddressEntity> findAllByUserDetails(UserEntity userEntity);
+ AddressEntity findAddressById(String addressId);
 }

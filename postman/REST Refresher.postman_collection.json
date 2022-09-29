@@ -90,13 +90,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"raw": "http://{{local}}:8080/mobile-app-ws/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
 					"port": "8080",
 					"path": [
+						"mobile-app-ws",
 						"users",
 						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
 					]
@@ -132,7 +133,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"new@new.com\",\n    \"password\": \"password\",\n    \"firstName\": \"sean\",\n    \"lastName\": \"mayer\",\n    \"addresses\": [\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Street\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"billing\"\n        },\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Steet\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"shipping\"\n        }\n    ]\n}",
+					"raw": "{\n    \"email\": \"new1@new1.com\",\n    \"password\": \"password\",\n    \"firstName\": \"sean\",\n    \"lastName\": \"mayer\",\n    \"addresses\": [\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Street\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"billing\"\n        },\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Steet\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"shipping\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -164,7 +165,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzZmY0NjNhZTY3Zjg0MGRjYWJjNzYwNDM0NjYwMGM1YSIsInN1YiI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2NTk2NzU4MjAsIm5iZiI6MTY1OTY3NTgyMCwiZXhwIjoxNjU5Njc1OTQwfQ.rTHulqTL7lAwErVk9vdEE3J59urTdGE-DyntJghsAHd1F7MpQKdusv0ODq3DMPQ7qdohYq2wMzwemTpOoNnABA",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJiM2UwYmZmNjNjZjY0ZThhYjk2ZjNiYWNkN2E4NmNjOCIsInN1YiI6Im5ld0BuZXcuY29tIiwiaWF0IjoxNjY0NDMyNjc0LCJuYmYiOjE2NjQ0MzI2NzQsImV4cCI6MTY2NDQzMjc5NH0.GpXjP3zW5Zo24rEJxTeKid9t-528MA64jyACX4V52oFeuiw1CkLg0iv2_Q-IgYU3iOeJBohwYyeUNgKhFaIE-w",
 						"type": "text"
 					},
 					{
@@ -183,13 +184,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/users?page=1&limit=2",
+					"raw": "http://{{local}}:8080/mobile-app-ws/users?page=1&limit=1",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
 					"port": "8080",
 					"path": [
+						"mobile-app-ws",
 						"users"
 					],
 					"query": [
@@ -199,7 +201,7 @@
 						},
 						{
 							"key": "limit",
-							"value": "2"
+							"value": "1"
 						}
 					]
 				}
@@ -217,8 +219,7 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json",
-						"type": "text",
-						"disabled": true
+						"type": "text"
 					},
 					{
 						"key": "Accept",
@@ -227,7 +228,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI4ZDYzODBmZDUwNmU0ZjNmYWRhMjgzYjJiMWMyNGNjYiIsInN1YiI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2NTk0MTk3MDUsIm5iZiI6MTY1OTQxOTcwNSwiZXhwIjoxNjU5NDE5ODI1fQ.-dJ2f0IgSwAcY6XqeeAjcWdw2yrJEpu_uAONrqNwjZBMb-SqAFRMaxOEHKFPX0Ue4cdsNX6FNFqjpAXbVE7hzg",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJiM2UwYmZmNjNjZjY0ZThhYjk2ZjNiYWNkN2E4NmNjOCIsInN1YiI6Im5ld0BuZXcuY29tIiwiaWF0IjoxNjY0NDMyNjc0LCJuYmYiOjE2NjQ0MzI2NzQsImV4cCI6MTY2NDQzMjc5NH0.GpXjP3zW5Zo24rEJxTeKid9t-528MA64jyACX4V52oFeuiw1CkLg0iv2_Q-IgYU3iOeJBohwYyeUNgKhFaIE-w",
 						"type": "text"
 					}
 				],
@@ -241,15 +242,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"raw": "http://{{local}}:8080/mobile-app-ws/users/FN73bXMTNQOXlUr0ePJPxrEB5TcStX",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
 					"port": "8080",
 					"path": [
+						"mobile-app-ws",
 						"users",
-						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
+						"FN73bXMTNQOXlUr0ePJPxrEB5TcStX"
 					]
 				}
 			},
@@ -276,7 +278,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI4NDE5NmE3MDYyMWI0NTRiYmE5NjYwYzhjODc2Yzg4MyIsInN1YiI6Im5ld0BuZXcuY29tIiwiaWF0IjoxNjY0MTc2MjM3LCJuYmYiOjE2NjQxNzYyMzcsImV4cCI6MTY2NDE3NjM1N30.5IBW2Ijap6Sff_-9-5SwsXb63EdOdHdctYLjC3Uw-4kR0B9OWBQC_rOMIF6EAjXPkDCrDud2b7x8uvHnslnJnA",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI1ODg4MmFhM2Q3Y2Y0YjQ5YTQ4MDIyODVlODkwNDIzYyIsInN1YiI6Im5ld0BuZXcuY29tIiwiaWF0IjoxNjY0NDMxNDA3LCJuYmYiOjE2NjQ0MzE0MDcsImV4cCI6MTY2NDQzMTUyN30.zu3vUIHWIdy9USprBxMKw5GcdjdxYcacrtaHFAbBThU9PhWFb0GVqAKp37mKFGp6sLMgaxCiDKNKi-YXIQFzfw",
 						"type": "text"
 					}
 				],
@@ -333,7 +335,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"new@new.com\",\n    \"password\":\"password\"\n}",
+					"raw": "{\n    \"email\":\"new1@new1.com\",\n    \"password\":\"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -397,6 +399,40 @@
 					"path": [
 						"users",
 						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find User Address",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJlY2E0ZjhiMmFiYzA0YjA5OTBhNzAxOGI5OGM3NDhhZiIsInN1YiI6Im5ldzFAbmV3MS5jb20iLCJpYXQiOjE2NjQ0MzI4NjksIm5iZiI6MTY2NDQzMjg2OSwiZXhwIjoxNjY0NDMyOTg5fQ.Odn5-iMMZCG6oOYNaFlsztouQl5ULWa7EfjrejwWzEpjFKUR0a0zExETEidMq3nSlt7z5VUbhkyuPessglwcXA",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{local}}:8080/mobile-app-ws/users/V3OUh0A0f3M3bqfCp5wFhpd9vR9XIL/addresses/8cupdDY84xfSY1fWwFnGlsM1K10vi2",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"mobile-app-ws",
+						"users",
+						"V3OUh0A0f3M3bqfCp5wFhpd9vR9XIL",
+						"addresses",
+						"8cupdDY84xfSY1fWwFnGlsM1K10vi2"
 					]
 				}
 			},

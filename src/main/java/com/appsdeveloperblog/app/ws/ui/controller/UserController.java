@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -34,6 +35,9 @@ public class UserController {
 
   @Autowired(required = true)
   UserService userService;
+
+  @Autowired(required = true)
+  AddressService addressesService;
 
   @Autowired(required = true)
   AddressService addressService;
@@ -156,7 +160,7 @@ public class UserController {
   )
   public List<AddressRest> getUserAddresses(@PathVariable String id) {
     List<AddressRest> returnValue = new ArrayList<>();
-    List<AddressDTO> addressesDTO = addressService.getAddresses(id);
+    List<AddressDTO> addressesDTO = addressesService.getAddresses(id);
 
     if(addressesDTO != null && !addressesDTO.isEmpty())
     {
@@ -165,5 +169,18 @@ public class UserController {
     }
 
     return returnValue;
+  }
+
+  @GetMapping(
+    path = "/{id}/addresses/{addressId}",
+    produces = {
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
+    }
+  )public AddressRest getUserAddress(@PathVariable String addressId) {
+
+    AddressDTO addressDTO = addressService.getAddress(addressId);
+    ModelMapper modelMapper = new ModelMapper();
+    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+    return modelMapper.map(addressDTO,AddressRest.class);
   }
 }
