@@ -20,7 +20,7 @@ public class AddressServiceImpl implements AddressService {
   @Autowired
   UserRepository userRepository;
 
-  @Autowired()
+  @Autowired
   AddressRepository addressRepository;
 
   @Override
@@ -46,12 +46,12 @@ public class AddressServiceImpl implements AddressService {
   public AddressDTO getAddress(String addressId) {
     AddressDTO returnValue = null;
 
-    AddressEntity addressEntity = addressRepository.findAddressById(addressId);
+    AddressEntity addressEntity = addressRepository.findByAddressId(addressId);
     
     if(addressEntity != null) {
       ModelMapper modelMapper = new ModelMapper();
       modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-      returnValue = new ModelMapper().map(addressEntity, AddressDTO.class);
+      returnValue = modelMapper.map(addressEntity, AddressDTO.class);
     }
 
     return returnValue;

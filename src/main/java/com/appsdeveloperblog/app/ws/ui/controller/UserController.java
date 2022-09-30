@@ -176,11 +176,10 @@ public class UserController {
     produces = {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
     }
-  )public AddressRest getUserAddress(@PathVariable String addressId) {
+  )
+  public AddressRest getUserAddress(@PathVariable String addressId) {
 
     AddressDTO addressDTO = addressService.getAddress(addressId);
-    ModelMapper modelMapper = new ModelMapper();
-    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-    return modelMapper.map(addressDTO,AddressRest.class);
+    return  new ModelMapper().map(addressDTO,AddressRest.class);
   }
 }
