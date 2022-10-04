@@ -9,15 +9,15 @@ import com.appsdeveloperblog.app.ws.ui.model.response.AddressRest;
 import com.appsdeveloperblog.app.ws.ui.model.response.OperationStatusModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.RequestOperationStatus;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -162,24 +162,54 @@ public class UserController {
     List<AddressRest> returnValue = new ArrayList<>();
     List<AddressDTO> addressesDTO = addressesService.getAddresses(id);
 
-    if(addressesDTO != null && !addressesDTO.isEmpty())
-    {
-        Type listType = new TypeToken<List<AddressRest>>() {}.getType();
-        returnValue = new ModelMapper().map(addressesDTO, listType);
+    if (addressesDTO != null && !addressesDTO.isEmpty()) {
+      Type listType = new TypeToken<List<AddressRest>>() {}.getType();
+      returnValue = new ModelMapper().map(addressesDTO, listType);
     }
 
     return returnValue;
   }
 
   @GetMapping(
-    path = "/{id}/addresses/{addressId}",
+    path = "/{userId}/addresses/{addressId}",
     produces = {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
     }
   )
-  public AddressRest getUserAddress(@PathVariable String addressId) {
-
+  public AddressRest getUserAddress(
+    @PathVariable String addressId,
+    @PathVariable String userId
+  ) {
     AddressDTO addressDTO = addressService.getAddress(addressId);
-    return  new ModelMapper().map(addressDTO,AddressRest.class);
+
+    AddressRest returnValue = new ModelMapper()
+    .map(addressDTO, AddressRest.class);
+
+    //http://localhost:8080/users/{userId}
+    Link userLink = WebMvcLinkBuilder
+      .linkTo(UserController.class)
+      .slash(userId)
+      .withRel("user");
+    returnValue.add(userLink);
+
+    //http://localhost:8080/users/{userId}/addresss/{addressId}
+    Link userAddressesLink = WebMvcLinkBuilder
+      .linkTo(UserController.class)
+      .slash(userId)
+      .slash("addresses")
+      .withRel("addresses");
+
+    Link selfLink = WebMvcLinkBuilder
+      .linkTo(UserController.class)
+      .slash(userId)
+      .slash("addresses")
+      .slash(addressId)
+      .withSelfRel();
+
+    returnValue.add(userLink);
+    returnValue.add(userAddressesLink);
+    returnValue.add(selfLink);
+
+    return returnValue;
   }
 }

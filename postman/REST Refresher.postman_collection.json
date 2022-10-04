@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"testing3\",\n    \"lastName\": \"testing3\",\n    \"email\": \"test10@test10.com\",\n    \"password\": \"testing1\",\n    \"addresses\": [\n        {\n            \"city\": \"test test test\",\n            \"country\": \"test test test\",\n            \"streetName\": \"test test test\",\n            \"postalCode\": \"test\",\n            \"type\": \"test\"\n        },\n        {\n            \"city\": \"test test test\",\n            \"country\": \"test test test\",\n            \"streetName\": \"test test test\",\n            \"postalCode\": \"test\",\n            \"type\": \"test\"\n        }\n    ]\n}",
+					"raw": "{\n    \"firstName\": \"testing3\",\n    \"lastName\": \"testing3\",\n    \"email\": \"new@new.com\",\n    \"password\": \"testing1\",\n    \"addresses\": [\n        {\n            \"city\": \"test test test\",\n            \"country\": \"test test test\",\n            \"streetName\": \"test test test\",\n            \"postalCode\": \"test\",\n            \"type\": \"test\"\n        },\n        {\n            \"city\": \"test test test\",\n            \"country\": \"test test test\",\n            \"streetName\": \"test test test\",\n            \"postalCode\": \"test\",\n            \"type\": \"test\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -51,55 +51,6 @@
 					"path": [
 						"mobile-app-ws",
 						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update User",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI5NWFkYTY4MDNmYzc0ODRkOTZmMTliMWZhMDcwNDI3ZSIsInN1YiI6InNlYW5vQHNlYW5vLmNvbSIsImlhdCI6MTY1OTQxNjU0NSwibmJmIjoxNjU5NDE2NTQ1LCJleHAiOjE2NTk0MTY2NjV9.mV8FylNuf-15svqzQ8OWk_ySSqQpUbcL2ImIZiPCyROaM5jCCDbIWGwOTYc9XBCMHNXfz_QncY8FiZ83xUOZwg",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"updateSean\",\n    \"lastName\": \"updateMayer\",\n    \"email\": \"seano@seano.com\",\n    \"password\":\"password\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
-					"protocol": "http",
-					"host": [
-						"{{local}}"
-					],
-					"port": "8080",
-					"path": [
-						"mobile-app-ws",
-						"users",
-						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
 					]
 				}
 			},
@@ -150,6 +101,105 @@
 					"path": [
 						"mobile-app-ws",
 						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"new1@new1.com\",\n    \"password\":\"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/mobile-app-ws/users/login",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"mobile-app-ws",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI5NWFkYTY4MDNmYzc0ODRkOTZmMTliMWZhMDcwNDI3ZSIsInN1YiI6InNlYW5vQHNlYW5vLmNvbSIsImlhdCI6MTY1OTQxNjU0NSwibmJmIjoxNjU5NDE2NTQ1LCJleHAiOjE2NTk0MTY2NjV9.mV8FylNuf-15svqzQ8OWk_ySSqQpUbcL2ImIZiPCyROaM5jCCDbIWGwOTYc9XBCMHNXfz_QncY8FiZ83xUOZwg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"updateSean\",\n    \"lastName\": \"updateMayer\",\n    \"email\": \"seano@seano.com\",\n    \"password\":\"password\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{local}}:8080/mobile-app-ws/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"protocol": "http",
+					"host": [
+						"{{local}}"
+					],
+					"port": "8080",
+					"path": [
+						"mobile-app-ws",
+						"users",
+						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
 					]
 				}
 			},
@@ -309,56 +359,6 @@
 			"response": []
 		},
 		{
-			"name": "Login",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\":\"new1@new1.com\",\n    \"password\":\"password\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users/login",
-					"protocol": "http",
-					"host": [
-						"{{local}}"
-					],
-					"port": "8080",
-					"path": [
-						"mobile-app-ws",
-						"users",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Delete User",
 			"request": {
 				"method": "DELETE",
@@ -433,6 +433,73 @@
 						"V3OUh0A0f3M3bqfCp5wFhpd9vR9XIL",
 						"addresses",
 						"8cupdDY84xfSY1fWwFnGlsM1K10vi2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HATEOS getUserAddress",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkY2FjOTc0N2ZmNjY0Y2QyYjVlM2I5NWVmNjM2NTk4MSIsInN1YiI6Im5ld0BuZXcuY29tIiwiaWF0IjoxNjY0ODY0MTgxLCJuYmYiOjE2NjQ4NjQxODEsImV4cCI6MTY2NDg2NDMwMX0.6f3FYz81rG0WaVZTGJ3vpOyHyMRIaw0KiVSGMCU06oA_PpiJN3gxz52fxOx-jGCLrY4CLdmHP-l0udmpKbBFog",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/mobile-app-ws/users/F2splCSl0DLE3ct6pmq6Hdpqp8hcy9/addresses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mobile-app-ws",
+						"users",
+						"F2splCSl0DLE3ct6pmq6Hdpqp8hcy9",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HATEOS getUserAddress with Links",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkY2FjOTc0N2ZmNjY0Y2QyYjVlM2I5NWVmNjM2NTk4MSIsInN1YiI6Im5ld0BuZXcuY29tIiwiaWF0IjoxNjY0ODY0MTgxLCJuYmYiOjE2NjQ4NjQxODEsImV4cCI6MTY2NDg2NDMwMX0.6f3FYz81rG0WaVZTGJ3vpOyHyMRIaw0KiVSGMCU06oA_PpiJN3gxz52fxOx-jGCLrY4CLdmHP-l0udmpKbBFog",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/mobile-app-ws/users/F2splCSl0DLE3ct6pmq6Hdpqp8hcy9/addresses/NN2PaWl64nO5SyClaYaafJW48KgQhI",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mobile-app-ws",
+						"users",
+						"F2splCSl0DLE3ct6pmq6Hdpqp8hcy9",
+						"addresses",
+						"NN2PaWl64nO5SyClaYaafJW48KgQhI"
 					]
 				}
 			},
