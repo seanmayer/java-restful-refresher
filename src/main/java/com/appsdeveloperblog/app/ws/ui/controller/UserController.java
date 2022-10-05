@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("users") // http://localhost:8080/users
+@RequestMapping("/users") // http://localhost:8080/users
 public class UserController {
 
   @Autowired(required = true)
@@ -195,22 +195,33 @@ public class UserController {
 
     //http://localhost:8080/users/{userId}/addresss/{addressId}
     Link userAddressesLink = WebMvcLinkBuilder
-      .linkTo(UserController.class)
-      .slash(userId)
-      .slash("addresses")
+      .linkTo(
+        WebMvcLinkBuilder
+          .methodOn(UserController.class)
+          .getUserAddresses(userId)
+      )
       .withRel("addresses");
+    //.slash(userId)
+    //.slash("addresses")
 
     Link selfLink = WebMvcLinkBuilder
-      .linkTo(UserController.class)
-      .slash(userId)
-      .slash("addresses")
-      .slash(addressId)
+      .linkTo(
+        WebMvcLinkBuilder
+          .methodOn(UserController.class)
+          .getUserAddress(addressId, userId)
+      )
       .withSelfRel();
+    //.slash(userId)
+    //.slash("addresses")
+    //.slash(addressId)
 
     //returnValue.add(userLink);
     //returnValue.add(userAddressesLink);
     //returnValue.add(selfLink);
 
-    return EntityModel.of(returnValue,Arrays.asList(userLink,userAddressesLink,selfLink));
+    return EntityModel.of(
+      returnValue,
+      Arrays.asList(userLink, userAddressesLink, selfLink)
+    );
   }
 }
