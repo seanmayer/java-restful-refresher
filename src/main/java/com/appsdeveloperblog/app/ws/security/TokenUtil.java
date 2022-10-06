@@ -26,7 +26,7 @@ public class TokenUtil {
   public static String generateToken(String username) {
     String id = UUID.randomUUID().toString().replace("-", "");
     Date now = new Date();
-    Date exp = new Date(System.currentTimeMillis() + (1000 * 120)); // 120 seconds
+    Date exp = new Date(System.currentTimeMillis() + (10000 * 120)); // 1200 seconds
 
     String token = Jwts
       .builder()
