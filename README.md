@@ -308,4 +308,14 @@ server.servlet.context-path=/mobile-app-ws
 3. Navigate to `localhost:8080/login`
 ![Screenshot](readme/images/spring_security.png)
 
+### Verification Service
+
+- Verification service: https://github.com/seanmayer/verification-service
+- Restful webservices: https://github.com/seanmayer/java-restful-refresher
+
+![SequenceDiagram](readme/images/verification_service_sketched_sequence_diagram.png)
+
+
+
+
 
