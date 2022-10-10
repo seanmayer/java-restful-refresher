@@ -308,13 +308,28 @@ server.servlet.context-path=/mobile-app-ws
 3. Navigate to `localhost:8080/login`
 ![Screenshot](readme/images/spring_security.png)
 
-### Verification Service
+### Verification Service Process
 
 - Verification service: https://github.com/seanmayer/verification-service
 - Restful webservices: https://github.com/seanmayer/java-restful-refresher
 
-![SequenceDiagram](readme/images/verification_service_sketched_sequence_diagram.png)
+![Sequence Diagram](readme/images/verification_service_sketched_sequence_diagram.png)
 
+### Setting up Amazon Simple Email Service (SES)
+
+1. Navigate to Amazon Simple Email Service:
+
+![Amazon Simple Email Webservice](readme/images/simple_email_service.png)
+
+2. Ensure that you have selected the region you want to target these emails (please note that the sender/source domain will need to be verified with AWS)
+
+3. Select Create Identity:
+
+![Create Identity](readme/images/create_identity.png)
+
+4. From here you will then be able to add your email address you want to use for sending emails out, this will then need to be verified in your inbox.
+
+![Create Identity](readme/images/verify_email_address.png)
 
 
 
