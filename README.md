@@ -319,7 +319,7 @@ server.servlet.context-path=/mobile-app-ws
 
 1. Navigate to Amazon Simple Email Service:
 
-![Amazon Simple Email Webservice](readme/images/simple_email_service.png)
+![Amazon Simple Email Service](readme/images/simple_email_service.png)
 
 2. Ensure that you have selected the region you want to target these emails (please note that the sender/source domain will need to be verified with AWS)
 
@@ -330,6 +330,55 @@ server.servlet.context-path=/mobile-app-ws
 4. From here you will then be able to add your email address you want to use for sending emails out, this will then need to be verified in your inbox.
 
 ![Create Identity](readme/images/verify_email_address.png)
+
+### Setting up Amazon Notification Email Service (SNS)
+
+1. Navigate to Amazon Notification Service:
+
+![Amazon Notification Email Service](readme/images/ses_navigate_create_topic.png)
+
+2. Create topic, with name "bounces":
+
+![Create Topic](readme/images/create_topic.png)
+
+3. Set topic to default configurations:
+
+![Topic Config](readme/images/topic_config.png)
+
+4. Topic has now been created, and now is viewable on the dashboard:
+
+![Topic Created](readme/images/topic_created.png)
+
+5. Repeat this process again but this time make a topic for "complain":
+
+![Complain Created](readme/images/complain_topic_created.png)
+
+6. Navigate to Subscriptions:
+
+![Navigate to Subscriptions](readme/images/navigate_create_subscription.png)
+
+7. Configure subscription for "bounces" to the email address you want:
+
+![Configure subscriptions](readme/images/subscription_config.png)
+
+8. Confirm subscription via the email you set, received in the inbox
+
+![Configure subscriptions](readme/images/confrim_subscription_email.png)
+
+9. Repeat this process again for complain
+
+10. Navigate back to SNS and select configurations for the email address you set on feedback notifications:
+
+![SNS configuration](readme/images/navigate_sns_fb_notifications.png)
+
+12. Configure SNS configuration on feedback notifications to the email that has been set both for bounces and complain:
+
+![SNS configuration](readme/images/sns_config_topics.png)
+
+13. After setting this, you should get confirmation in your inbox that this it is set.
+
+
+
 
 
 
