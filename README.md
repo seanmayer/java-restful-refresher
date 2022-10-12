@@ -377,9 +377,14 @@ server.servlet.context-path=/mobile-app-ws
 
 13. After setting this, you should get confirmation in your inbox that this it is set.
 
+14. Navigate to support center to create a ticket
 
+![Support Center](readme/images/select_support_center.png)
 
-
+15. Raise a support ticket with a service limit increase 
+- Limit Type: SES Sending Limits
+- New limit value: 100
+- Region: {region you are using}
 
 
 
