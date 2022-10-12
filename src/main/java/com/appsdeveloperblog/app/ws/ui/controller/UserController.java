@@ -161,7 +161,9 @@ public class UserController {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
     }
   )
-  public CollectionModel<AddressRest> getUserAddresses(@PathVariable String userId) {
+  public CollectionModel<AddressRest> getUserAddresses(
+    @PathVariable String userId
+  ) {
     List<AddressRest> returnValue = new ArrayList<>();
     List<AddressDTO> addressesDTO = addressesService.getAddresses(userId);
 
@@ -169,32 +171,31 @@ public class UserController {
       Type listType = new TypeToken<List<AddressRest>>() {}.getType();
       returnValue = new ModelMapper().map(addressesDTO, listType);
 
-      for(AddressRest addressRest : returnValue) {
+      for (AddressRest addressRest : returnValue) {
         Link selfLink = WebMvcLinkBuilder
-        .linkTo(
-          WebMvcLinkBuilder
-            .methodOn(UserController.class)
-            .getUserAddress(addressRest.getAddressId(), userId)
-        )
-        .withSelfRel();
+          .linkTo(
+            WebMvcLinkBuilder
+              .methodOn(UserController.class)
+              .getUserAddress(addressRest.getAddressId(), userId)
+          )
+          .withSelfRel();
         addressRest.add(selfLink);
       }
-
     }
 
     //http://localhost:8080/users/{userId}
     Link userLink = WebMvcLinkBuilder
-    .linkTo(UserController.class)
-    .slash(userId)
-    .withRel("user");
+      .linkTo(UserController.class)
+      .slash(userId)
+      .withRel("user");
 
     Link selfLink = WebMvcLinkBuilder
-    .linkTo(
-      WebMvcLinkBuilder
-        .methodOn(UserController.class)
-        .getUserAddresses(userId)
-    )
-    .withSelfRel();
+      .linkTo(
+        WebMvcLinkBuilder
+          .methodOn(UserController.class)
+          .getUserAddresses(userId)
+      )
+      .withSelfRel();
 
     return CollectionModel.of(returnValue, userLink, selfLink);
   }
