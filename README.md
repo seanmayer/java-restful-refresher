@@ -403,3 +403,24 @@ server.servlet.context-path=/mobile-app-ws
 - access type: programmatic access
 - set permission group: {create permission group -> name it: `SES-SERVICE-USERS` select `AmazonSESFullAccess` -> create group}
 - Once completed make note of "Access key ID" and "Secret access key" (only available once!)
+
+#### Create a shared credentials file
+
+Used for access details and authenticate with AWS.
+
+1. Create a new file containing this, and paste the following lines you have just create in prior steps:
+
+```
+[default]
+aws_access_key_id = YOUR_AWS_ACCESS_KEY_ID
+aws_secret_access_key = YOUR_AWS_SECRET_ACCESS_KEY
+```
+2. Save the file (do not use a file extension when saving the file):
+
+If Linux/Mac OS:
+
+`~/.aws/credentials`
+
+If Windows:
+
+`C:\Users\USERNAME\.aws\credentials`
