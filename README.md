@@ -315,7 +315,7 @@ server.servlet.context-path=/mobile-app-ws
 
 ![Sequence Diagram](readme/images/verification_service_sketched_sequence_diagram.png)
 
-### Setting up Amazon Simple Email Service (SES)
+#### Setting up Amazon Simple Email Service (SES)
 
 1. Navigate to Amazon Simple Email Service:
 
@@ -331,7 +331,7 @@ server.servlet.context-path=/mobile-app-ws
 
 ![Create Identity](readme/images/verify_email_address.png)
 
-### Setting up Amazon Notification Email Service (SNS)
+#### Setting up Amazon Notification Email Service (SNS)
 
 1. Navigate to Amazon Notification Service:
 
@@ -377,14 +377,29 @@ server.servlet.context-path=/mobile-app-ws
 
 13. After setting this, you should get confirmation in your inbox that this it is set.
 
-14. Navigate to support center to create a ticket
+#### Raising a support ticket for SES limit increase
+
+1. Navigate to support center to create a ticket
 
 ![Support Center](readme/images/select_support_center.png)
 
-15. Raise a support ticket with a service limit increase 
+2. Raise a support ticket with a service limit increase 
 - Limit Type: SES Sending Limits
 - New limit value: 100
 - Region: {region you are using}
 
+#### Create AWS IAM Access Credentials
 
+1. Naviate to security credentials by select username top right corner:
 
+![Navigate Security Credentials](readme/images/create_security_creds.png)
+
+2. Once in the console select users and create new user
+
+![Add IAM User](readme/images/add_user.png)
+
+3. User configuration
+- user name: {username}
+- access type: programmatic access
+- set permission group: {create permission group -> name it: `SES-SERVICE-USERS` select `AmazonSESFullAccess` -> create group}
+- Once completed make note of "Access key ID" and "Secret access key" (only available once!)
