@@ -252,4 +252,29 @@ public class UserController {
       Arrays.asList(userLink, userAddressesLink, selfLink)
     );
   }
+
+  // http://localhost:8080/mobile-app-ws/users/email-verification?token=dfasfa
+
+  @GetMapping(
+    path = "/email-verification",
+    produces = {
+      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
+    }
+  )
+  public OperationStatusModel verifyEmailToken(
+    @RequestParam(value = "token") String token
+  ) {
+    OperationStatusModel returnValue = new OperationStatusModel();
+    returnValue.setOperationName(RequestOperationName.VERIFY_EMAIL.name());
+
+    boolean isVerified = userService.verifyEmailToken(token);
+
+    if (isVerified) {
+      returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
+    } else {
+      returnValue.setOperationResult(RequestOperationStatus.ERROR.name());
+    }
+
+    return returnValue;
+  }
 }
