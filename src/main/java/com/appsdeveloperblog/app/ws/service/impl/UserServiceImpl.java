@@ -50,11 +50,6 @@ public class UserServiceImpl implements UserService {
       user.getAddresses().set(i, address);
     }
 
-    //BeanUtils.copyProperties(user, userEntity);
-
-    //UserDto is transfered to UserEntity
-    //UserEntity is saved to database
-    //UserEntity is transfered to UserDto
     ModelMapper modelMapper = new ModelMapper();
     modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     UserEntity userEntity = modelMapper.map(user, UserEntity.class);
@@ -64,10 +59,11 @@ public class UserServiceImpl implements UserService {
       bCryptPasswordEncoder.encode(user.getPassword())
     );
     userEntity.setUserId(publicUserId);
+    userEntity.setEmailVerificationToken(utils.generateEmailVerificationToken(publicUserId));
+    userEntity.setEmailVerificationStatus(false);
 
     UserEntity storedUserDetails = userRepository.save(userEntity);
 
-    //BeanUtils.copyProperties(storedUserDetails, returnValue);
     UserDto returnValue = modelMapper.map(storedUserDetails, UserDto.class);
 
     return returnValue;

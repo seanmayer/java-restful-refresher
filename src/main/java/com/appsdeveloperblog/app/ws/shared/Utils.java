@@ -6,9 +6,11 @@ import java.util.Random;
 import org.springframework.stereotype.Component;
 
 import com.appsdeveloperblog.app.ws.security.SecurityConstants;
+import com.appsdeveloperblog.app.ws.security.TokenUtil;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class Utils {
@@ -45,5 +47,17 @@ public class Utils {
     Date todayDate = new Date();
     
     return tokenExpirationDate.before(todayDate);
+  }
+
+  public String generateEmailVerificationToken(String userId) {
+    
+      String token = Jwts
+      .builder()
+      .setId(userId)
+      .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
+      .signWith(SignatureAlgorithm.HS512, TokenUtil.getSecretKey())
+      .compact();
+
+      return token;
   }
 }

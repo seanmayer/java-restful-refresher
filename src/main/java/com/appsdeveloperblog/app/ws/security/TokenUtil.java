@@ -19,8 +19,8 @@ public class TokenUtil {
     .getEncoder()
     .encodeToString(secretBytes);
 
-  public static SecretKey getSecretKey() {
-    return secret;
+  public static String getSecretKey() {
+    return base64SecretBytes;
   }
 
   public static String generateToken(String username) {
