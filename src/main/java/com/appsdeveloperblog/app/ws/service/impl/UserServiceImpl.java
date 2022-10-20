@@ -10,7 +10,6 @@ import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
 import com.appsdeveloperblog.app.ws.ui.model.response.ErrorMessages;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.BeanUtils;
@@ -38,7 +37,6 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public UserDto createUser(UserDto user) {
-
     if (userRepository.findByEmail(user.getEmail()) != null) {
       throw new RuntimeException("User already exist");
     }
@@ -51,7 +49,9 @@ public class UserServiceImpl implements UserService {
     }
 
     ModelMapper modelMapper = new ModelMapper();
-    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+    modelMapper
+      .getConfiguration()
+      .setMatchingStrategy(MatchingStrategies.STRICT);
     UserEntity userEntity = modelMapper.map(user, UserEntity.class);
 
     String publicUserId = utils.generatedUserId(30);
@@ -59,7 +59,9 @@ public class UserServiceImpl implements UserService {
       bCryptPasswordEncoder.encode(user.getPassword())
     );
     userEntity.setUserId(publicUserId);
-    userEntity.setEmailVerificationToken(utils.generateEmailVerificationToken(publicUserId));
+    userEntity.setEmailVerificationToken(
+      utils.generateEmailVerificationToken(publicUserId)
+    );
     userEntity.setEmailVerificationStatus(false);
 
     UserEntity storedUserDetails = userRepository.save(userEntity);
@@ -81,8 +83,17 @@ public class UserServiceImpl implements UserService {
     return new User(
       userEntity.getEmail(),
       userEntity.getEncryptPassword(),
+      userEntity.getEmailVerificationStatus(),
+      true,
+      true,
+      true,
       new ArrayList<>()
     );
+    // return new User(
+    //   userEntity.getEmail(),
+    //   userEntity.getEncryptPassword(),
+    //   new ArrayList<>()
+    // );
   }
 
   @Override
@@ -162,11 +173,13 @@ public class UserServiceImpl implements UserService {
     boolean returnValue = false;
 
     //find user Token
-    UserEntity userEntity = userRepository.findUserByEmailVerificationToken(token);
+    UserEntity userEntity = userRepository.findUserByEmailVerificationToken(
+      token
+    );
 
-    if(userEntity != null) {
+    if (userEntity != null) {
       boolean hasTokenExpired = Utils.hasTokenExpired(token);
-      if(!hasTokenExpired) {
+      if (!hasTokenExpired) {
         userEntity.setEmailVerificationToken(null);
         userEntity.setEmailVerificationStatus(Boolean.TRUE);
         userRepository.save(userEntity);
