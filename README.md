@@ -424,3 +424,5 @@ If Linux/Mac OS:
 If Windows:
 
 `C:\Users\USERNAME\.aws\credentials`
+
+#### Run Tomcat and add Spring STS
