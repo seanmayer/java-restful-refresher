@@ -48,7 +48,7 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 3. `./mvnw install` creates the war package in `/target`
 4. Install tomcat zip from http://tomcat.apache.org (with the appropriate corrosponding java version)
 5. Unzip on to desktop
-6. Switch directories to `cd /Desktop/apache-tomcat-9.0.65/bin/
+6. Switch directories to `cd /Desktop/apache-tomcat-9.0.65/bin/`
 7. Elevate permissions to make script files executable `chmod a+x *.sh`
 8. Run `./startup.sh`
 9. Navigate to http://localhost:8080 (tomat is running!)
