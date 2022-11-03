@@ -15,7 +15,7 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 - Spring Boot Tools
 - Spring Initializer Java Support
 - Test Runner for Java
-- Maven for Java
+- Maven for Java -> if Mac -> `xcode-select --install` -> `brew install maven` 
 - Debugger for Java
 - Extension Pack for Java
 - Java prettier formatter
@@ -191,7 +191,7 @@ gpgcheck=0
 44. `mysql -u {my username here} -p;`
 45. `show databases`;
 #### Deploy webservices on tomcat 
-46. Navigate to maven webservices project: e.g. `cd mobile-app-ws`
+46. Navigate to maven webservices project: e.g.`cd mobile-app-ws`
 47. `./mvnw install`
 48. Go to `cd mobile-app-ws/target/mobile-app-ws-0.0.1-SNAPSHOT.war`
 - Rename it if needed
