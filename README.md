@@ -418,11 +418,9 @@ aws_secret_access_key = YOUR_AWS_SECRET_ACCESS_KEY
 2. Save the file (do not use a file extension when saving the file):
 
 If Linux/Mac OS:
-
 `~/.aws/credentials`
 
 If Windows:
-
 `C:\Users\USERNAME\.aws\credentials`
 
 #### Run Tomcat and add Spring STS
