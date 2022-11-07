@@ -27,7 +27,7 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 2. Upload the deployable `.jar` file to a production server
 3. Run application with `java -jar` <filname> command
 
-### Running Webservices without STS
+### Running Webservices without Security Token Service (STS)
 1. Navigate to `/mobile-app-ws` directroy folder
 2. Run `./mvnw install` this will compile, build the project and unit tests
 3. Run `./mvnw spring-boot:run` this will run the RESTful webservices application in a apache tomcat server container
@@ -423,4 +423,10 @@ If Linux/Mac OS:
 If Windows:
 `C:\Users\USERNAME\.aws\credentials`
 
-#### Run Tomcat and add Spring STS
+#### Run Tomcat and add Spring Security Token Service (STS)
+
+1. Create war package from https://github.com/seanmayer/verification-service -> `mvn install`
+
+2. Deploy the .war to your local tomcat server
+
+3. Open brower and check: http://localhost:8080/verification-service/email-verification.html
