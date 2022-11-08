@@ -430,3 +430,8 @@ If Windows:
 2. Deploy the .war to your local tomcat server
 
 3. Open brower and check: http://localhost:8080/verification-service/email-verification.html
+
+4. Deploy https://github.com/seanmayer/java-restful-refresher
+
+- Please note if you get an error on deployment that is: `Deploy Upload Failed, Exception: [org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException` please got to web.xml of the manager application (for instance it could be under /tomcat9/webapps/manager/WEB-INF/web.xml.
+Increase the max-file-size and max-request-size
