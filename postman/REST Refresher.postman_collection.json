@@ -84,7 +84,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"new1@new1.com\",\n    \"password\": \"password\",\n    \"firstName\": \"sean\",\n    \"lastName\": \"mayer\",\n    \"addresses\": [\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Street\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"billing\"\n        },\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Steet\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"shipping\"\n        }\n    ]\n}",
+					"raw": "{\n    \"email\": \"very@very.com\",\n    \"password\": \"password\",\n    \"firstName\": \"sean\",\n    \"lastName\": \"mayer\",\n    \"addresses\": [\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Street\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"billing\"\n        },\n        {\n            \"city\":\"London\",\n            \"country\": \"UK\",\n            \"streetName\": \"Steet\",\n            \"postalCode\": \"ABC123\",\n            \"type\": \"shipping\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -101,6 +101,40 @@
 					"path": [
 						"mobile-app-ws",
 						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign up Verification",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/mobile-app-ws/users/email-verification?token=eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJHREFhUjFXOTVnTGN6YU5Ra3k0RjgyZ3NNNEpsU2IiLCJleHAiOjE2Njg4NDI0MTV9.vepSHKKARSbVpt06OBwEe9uQwG7zu_HgzkwXvsrqOOcztFxciMOJZvuUK3L6G3ToHLr-SMFJL4gXJjl1dX7Q_Q",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mobile-app-ws",
+						"users",
+						"email-verification"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJHREFhUjFXOTVnTGN6YU5Ra3k0RjgyZ3NNNEpsU2IiLCJleHAiOjE2Njg4NDI0MTV9.vepSHKKARSbVpt06OBwEe9uQwG7zu_HgzkwXvsrqOOcztFxciMOJZvuUK3L6G3ToHLr-SMFJL4gXJjl1dX7Q_Q"
+						}
 					]
 				}
 			},
@@ -133,7 +167,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"new1@new1.com\",\n    \"password\":\"password\"\n}",
+					"raw": "{\n    \"email\":\"new3@new3.com\",\n    \"password\":\"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -445,7 +479,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJkY2FjOTc0N2ZmNjY0Y2QyYjVlM2I5NWVmNjM2NTk4MSIsInN1YiI6Im5ld0BuZXcuY29tIiwiaWF0IjoxNjY0ODY0MTgxLCJuYmYiOjE2NjQ4NjQxODEsImV4cCI6MTY2NDg2NDMwMX0.6f3FYz81rG0WaVZTGJ3vpOyHyMRIaw0KiVSGMCU06oA_PpiJN3gxz52fxOx-jGCLrY4CLdmHP-l0udmpKbBFog",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0NDU0YzI4NmVlMjI0NWZiYWY4ZjJmZTI2MTU3ODY1YiIsInN1YiI6Im5ld0BuZXcuY29tIiwiaWF0IjoxNjY1MDM1OTQ2LCJuYmYiOjE2NjUwMzU5NDYsImV4cCI6MTY2NTAzNzE0Nn0.kjtp_VNeYpD7OvNuUBudafrOumA7YtmJLQVf8mEhndKTpfT0msNJi7qGUl6roh7VB3vlOl4iNqIffG-ZNT-Qrg",
 						"type": "text"
 					},
 					{

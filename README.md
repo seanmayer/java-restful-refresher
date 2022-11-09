@@ -425,13 +425,22 @@ If Windows:
 
 #### Run Tomcat and add Spring Security Token Service (STS)
 
-1. Create war package from https://github.com/seanmayer/verification-service -> `mvn install`
+1. Create war package from https://github.com/seanmayer/verification-service -> `mvn clean` -> `mvn install`
 
 2. Deploy the .war to your local tomcat server
 
 3. Open brower and check: http://localhost:8080/verification-service/email-verification.html
 
-4. Deploy https://github.com/seanmayer/java-restful-refresher
+4. Create war package from https://github.com/seanmayer/java-restful-refresher -> `mvn clean` -> `mvn install`
 
 - Please note if you get an error on deployment that is: `Deploy Upload Failed, Exception: [org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException` please got to web.xml of the manager application (for instance it could be under /tomcat9/webapps/manager/WEB-INF/web.xml.
 Increase the max-file-size and max-request-size
+
+5. Run Sign up in the local postman collection `/postman/REST Refresher.postman_collection.json`
+
+6. Open MySQL workbench and preview the users table, find the new user you have created and copy the `email-verification_token` field.
+
+7. With the token apply this to the token param in Sign up verification in the local postman collection `/postman/REST Refresher.postman_collection.json` and then run it
+
+- If you encounter this message:
+``` "The verification key's size is 64 bits which is not secure enough for the HS512 algorithm.  The JWT JWA Specification (RFC 7518, Section 3.2) states that keys used with HS512 MUST have a size >= 512 bits (the key size must be greater than or equal to the hash output size).  Consider using the io.jsonwebtoken.security.Keys class's 'secretKeyFor(SignatureAlgorithm.HS512)' method to create a key guaranteed to be secure enough for HS512.  See https://tools.ietf.org/html/rfc7518#section-3.2 for more information." ```
