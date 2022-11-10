@@ -39,7 +39,7 @@ public class Utils {
     
     Claims claims = Jwts
       .parser()
-      .setSigningKey(SecurityConstants.getTokenSecret())
+      .setSigningKey(TokenUtil.getSecretKey())
       .parseClaimsJws(token)
       .getBody();
 
@@ -55,7 +55,7 @@ public class Utils {
       .builder()
       .setId(userId)
       .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
-      .signWith(SignatureAlgorithm.HS512, TokenUtil.getSecretKey())
+      .signWith(TokenUtil.getSecretKey())
       .compact();
 
       return token;
