@@ -441,6 +441,3 @@ Increase the max-file-size and max-request-size
 6. Open MySQL workbench and preview the users table, find the new user you have created and copy the `email-verification_token` field.
 
 7. With the token apply this to the token param in Sign up verification in the local postman collection `/postman/REST Refresher.postman_collection.json` and then run it
-
-- If you encounter this message:
-``` "The verification key's size is 64 bits which is not secure enough for the HS512 algorithm.  The JWT JWA Specification (RFC 7518, Section 3.2) states that keys used with HS512 MUST have a size >= 512 bits (the key size must be greater than or equal to the hash output size).  Consider using the io.jsonwebtoken.security.Keys class's 'secretKeyFor(SignatureAlgorithm.HS512)' method to create a key guaranteed to be secure enough for HS512.  See https://tools.ietf.org/html/rfc7518#section-3.2 for more information." ```
