@@ -258,7 +258,7 @@ public class UserController {
   @GetMapping(
     path = "/email-verification",
     produces = {
-      MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
+      MediaType.APPLICATION_JSON_VALUE
     }
   )
   public OperationStatusModel verifyEmailToken(

@@ -441,3 +441,5 @@ Increase the max-file-size and max-request-size
 6. Open MySQL workbench and preview the users table, find the new user you have created and copy the `email-verification_token` field.
 
 7. With the token apply this to the token param in Sign up verification in the local postman collection `/postman/REST Refresher.postman_collection.json` and then run it
+
+8. Repeat step 5 and 6. But this time go to your browser to verify this token with verfication webpage instead:`http://localhost:8080/verification-service/email-verification.html?token={you-copied-token}`
