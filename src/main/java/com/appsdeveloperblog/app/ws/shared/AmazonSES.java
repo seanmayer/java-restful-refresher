@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AmazonSES {
-
-  Dotenv dotenv = Dotenv.configure().load();
+   
+  Dotenv dotenv = Dotenv.load();
 
   // This address must be verified with Amazon SES.
-  final String FROM = System.getenv("SES_EMAIL_ADDRESS");
+  String FROM = dotenv.get("SES_EMAIL_ADDRESS");
 
   // The subject line for the email.
   final String SUBJECT =
@@ -28,7 +28,7 @@ public class AmazonSES {
   final String PASSWORD_RESET_SUBJECT = "Password reset request";
 
   // The HTML body for the email.
-  final String HTMLBODY =
+  String HTMLBODY =
     "<h1>Please verify your email address</h1>" +
     "<p>Thank you for registering with our mobile app. To complete registration process and be able to log in," +
     " click on the following link: " +
@@ -40,7 +40,7 @@ public class AmazonSES {
     "Thank you! And we are waiting for you inside!";
 
   // The email body for recipients with non-HTML email clients.
-  final String TEXTBODY =
+  String TEXTBODY =
     "Please verify your email address. " +
     "Thank you for registering with our mobile app. To complete registration process and be able to log in," +
     " open then the following URL in your browser window: " +
@@ -57,7 +57,7 @@ public class AmazonSES {
     "</a><br/><br/>" +
     "Thank you!";
 
-  // The email body for recipients with non-HTML email clients.
+  // The email body for recipients with non-HTML email clients.m
   final String PASSWORD_RESET_TEXTBODY =
     "A request to reset your password " +
     "Hi, $firstName! " +
@@ -68,8 +68,8 @@ public class AmazonSES {
 
   public void verifyEmail(UserDto userDto) {
     // You can also set your keys this way. And it will work!
-    //System.setProperty("aws.accessKeyId", "<YOUR KEY ID HERE>");
-    //System.setProperty("aws.secretKey", "<SECRET KEY HERE>");
+    System.setProperty("aws.accessKeyId", dotenv.get("AWS_ACCESS_KEY_ID"));
+    System.setProperty("aws.secretKey", dotenv.get("AWS_SECRET_ACCESS_KEY"));
 
     AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder
       .standard()
@@ -116,7 +116,7 @@ public class AmazonSES {
 
     AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder
       .standard()
-      .withRegion(Regions.US_EAST_1)
+      .withRegion(Regions.EU_WEST_2)
       .build();
 
     String htmlBodyWithToken = PASSWORD_RESET_HTMLBODY.replace(

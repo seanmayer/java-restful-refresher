@@ -1,0 +1,4 @@
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_VERIFICATION_SERVICE_URL=http://localhost:8080/verification-service/email-verification.html?token=$tokenValue
+SES_EMAIL_ADDRESS=
