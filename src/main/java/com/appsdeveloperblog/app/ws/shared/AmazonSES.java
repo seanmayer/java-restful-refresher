@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AmazonSES {
-   
+
   Dotenv dotenv = Dotenv.load();
 
   // This address must be verified with Amazon SES.
