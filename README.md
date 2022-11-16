@@ -443,3 +443,5 @@ Increase the max-file-size and max-request-size
 7. With the token apply this to the token param in Sign up verification in the local postman collection `/postman/REST Refresher.postman_collection.json` and then run it
 
 8. Repeat step 5 and 6. But this time go to your browser to verify this token with verfication webpage instead:`http://localhost:8080/verification-service/email-verification.html?token={you-copied-token}`
+
+#### Run Tomcat and add Spring Security Token Service (STS) on AWS
