@@ -433,7 +433,7 @@ If Windows:
 
 4. Create war package from https://github.com/seanmayer/java-restful-refresher -> `mvn clean` -> `mvn install`
 
-- Please note if you get an error on deployment that is: `Deploy Upload Failed, Exception: [org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException` please got to web.xml of the manager application (for instance it could be under /tomcat9/webapps/manager/WEB-INF/web.xml.
+- Please note if you get an error on deployment that is: `Deploy Upload Failed, Exception: [org.apache.tomcat.util.http.fileupload.impl.SizeLimitExceededException` please got to web.xml of the manager application (for instance it could be under `/tomcat9/webapps/manager/WEB-INF/web.xml`.
 Increase the max-file-size and max-request-size
 
 5. Run Sign up in the local postman collection `/postman/REST Refresher.postman_collection.json`
