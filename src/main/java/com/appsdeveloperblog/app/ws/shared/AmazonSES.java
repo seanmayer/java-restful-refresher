@@ -10,16 +10,13 @@ import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.amazonaws.services.simpleemail.model.SendEmailResult;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AmazonSES {
 
-  Dotenv dotenv = Dotenv.load();
-
   // This address must be verified with Amazon SES.
-  String FROM = dotenv.get("SES_EMAIL_ADDRESS");
+  String FROM = "{validated-aws-ses-email}";
 
   // The subject line for the email.
   final String SUBJECT =
@@ -33,7 +30,7 @@ public class AmazonSES {
     "<p>Thank you for registering with our mobile app. To complete registration process and be able to log in," +
     " click on the following link: " +
     "<a href='" +
-    System.getenv("AWS_VERIFICATION_SERVICE_URL") +
+    "http://{awshost}:8080/verification-service/email-verification.html?token=$tokenValue" +
     "'>" +
     "Final step to complete your registration" +
     "</a><br/><br/>" +
@@ -44,7 +41,7 @@ public class AmazonSES {
     "Please verify your email address. " +
     "Thank you for registering with our mobile app. To complete registration process and be able to log in," +
     " open then the following URL in your browser window: " +
-    System.getenv("AWS_VERIFICATION_SERVICE_URL") +
+    "http://{awshost}:8080/verification-service/email-verification.html?token=$tokenValue" +
     " Thank you! And we are waiting for you inside!";
 
   final String PASSWORD_RESET_HTMLBODY =
@@ -68,8 +65,8 @@ public class AmazonSES {
 
   public void verifyEmail(UserDto userDto) {
     // You can also set your keys this way. And it will work!
-    System.setProperty("aws.accessKeyId", dotenv.get("AWS_ACCESS_KEY_ID"));
-    System.setProperty("aws.secretKey", dotenv.get("AWS_SECRET_ACCESS_KEY"));
+    System.setProperty("aws.accessKeyId", "{accessKeyId}");
+    System.setProperty("aws.secretKey", "{secretKey}");
 
     AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder
       .standard()

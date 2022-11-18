@@ -445,3 +445,21 @@ Increase the max-file-size and max-request-size
 8. Repeat step 5 and 6. But this time go to your browser to verify this token with verfication webpage instead:`http://localhost:8080/verification-service/email-verification.html?token={you-copied-token}`
 
 #### Run Tomcat and add Spring Security Token Service (STS) on AWS
+
+1. Removed dependency dotenv package was breaking the .war file:
+```
+<dependency>
+	<groupId>io.github.cdimascio</groupId>
+	<artifactId>dotenv-java</artifactId>
+	<version>2.2.4</version>
+</dependency>
+```
+
+2. Add aws variables to `AmazonSES.java` in this repo, and `email-verification.html` in https://github.com/seanmayer/verification-service
+
+3. Maven clean and install both repos and deploy the .war(s) to your AWS/tomcat instance
+
+4. Now you should be able to run the signup in postman with the SES email address, this will then sign up the user in the RDS database and send a verification link, once the link is navigated it will verify the email address and update the database entry that the email is verified :)
+
+
+
