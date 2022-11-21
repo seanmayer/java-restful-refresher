@@ -461,5 +461,7 @@ Increase the max-file-size and max-request-size
 
 4. Now you should be able to run the signup in postman with the SES email address, this will then sign up the user in the RDS database and send a verification link, once the link is navigated it will verify the email address and update the database entry that the email is verified :)
 
+### Reset Password Service
 
+![Screenshot](readme/images/reset-password-sequence.png)
 
