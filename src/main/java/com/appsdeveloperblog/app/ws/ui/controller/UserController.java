@@ -4,6 +4,7 @@ import com.appsdeveloperblog.app.ws.service.AddressService;
 import com.appsdeveloperblog.app.ws.service.UserService;
 import com.appsdeveloperblog.app.ws.shared.dto.AddressDTO;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
+import com.appsdeveloperblog.app.ws.ui.model.request.PasswordResetModel;
 import com.appsdeveloperblog.app.ws.ui.model.request.UserDetailsRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.AddressRest;
 import com.appsdeveloperblog.app.ws.ui.model.response.OperationStatusModel;
@@ -213,7 +214,7 @@ public class UserController {
     AddressDTO addressDTO = addressService.getAddress(addressId);
 
     AddressRest returnValue = new ModelMapper()
-    .map(addressDTO, AddressRest.class);
+      .map(addressDTO, AddressRest.class);
 
     //http://localhost:8080/users/{userId}
     Link userLink = WebMvcLinkBuilder
@@ -257,9 +258,7 @@ public class UserController {
 
   @GetMapping(
     path = "/email-verification",
-    produces = {
-      MediaType.APPLICATION_JSON_VALUE
-    }
+    produces = { MediaType.APPLICATION_JSON_VALUE }
   )
   public OperationStatusModel verifyEmailToken(
     @RequestParam(value = "token") String token
@@ -275,6 +274,34 @@ public class UserController {
       returnValue.setOperationResult(RequestOperationStatus.ERROR.name());
     }
 
+    return returnValue;
+  }
+
+  /* http://localhost:8080/mobile-app-ws/password-reset */
+
+  @PostMapping(
+    path = "/password-reset",
+    consumes = {
+      MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE,
+    }
+  )
+  public OperationStatusModel resetPassword(
+    @RequestBody PasswordResetModel passwordResetModel
+  ) {
+    OperationStatusModel returnValue = new OperationStatusModel();
+
+    boolean operationResult = userService.resetPassword(
+      passwordResetModel.getToken(),
+      passwordResetModel.getPassword()
+    );
+
+    /* returnValue.setOperationName(RequestOperationName.PASSWORD_RESET.name());
+    returnValue.setOperationResult(RequestOperationStatus.ERROR.name());
+
+    if (operationResult) {
+      returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
+    }
+ */
     return returnValue;
   }
 }
