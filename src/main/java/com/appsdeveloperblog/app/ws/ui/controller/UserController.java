@@ -295,13 +295,13 @@ public class UserController {
       passwordResetModel.getPassword()
     );
 
-    /* returnValue.setOperationName(RequestOperationName.PASSWORD_RESET.name());
+    returnValue.setOperationName(RequestOperationName.PASSWORD_RESET.name());
     returnValue.setOperationResult(RequestOperationStatus.ERROR.name());
 
     if (operationResult) {
       returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
     }
- */
+
     return returnValue;
   }
 }
