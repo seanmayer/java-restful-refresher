@@ -60,4 +60,16 @@ public class Utils {
 
       return token;
   }
+
+  public String generatePasswordResetToken(String userId) {
+    
+    String token = Jwts
+    .builder()
+    .setId(userId)
+    .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
+    .signWith(TokenUtil.getSecretKey())
+    .compact();
+    
+    return token;
+  }
 }
