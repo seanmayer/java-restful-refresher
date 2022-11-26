@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
+import com.appsdeveloperblog.app.ws.io.repositories.PasswordResetTokenRepository;
 import com.appsdeveloperblog.app.ws.service.AddressService;
 import com.appsdeveloperblog.app.ws.service.UserService;
 import com.appsdeveloperblog.app.ws.shared.dto.AddressDTO;
@@ -290,9 +291,8 @@ public class UserController {
   ) {
     OperationStatusModel returnValue = new OperationStatusModel();
 
-    boolean operationResult = userService.resetPassword(
-      passwordResetModel.getToken(),
-      passwordResetModel.getPassword()
+    boolean operationResult = userService.requestPasswordReset(
+      passwordResetModel.getEmail()
     );
 
     returnValue.setOperationName(RequestOperationName.PASSWORD_RESET.name());

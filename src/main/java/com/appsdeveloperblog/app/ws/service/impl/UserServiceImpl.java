@@ -1,7 +1,9 @@
 package com.appsdeveloperblog.app.ws.service.impl;
 
 import com.appsdeveloperblog.app.ws.exceptions.UserServiceException;
+import com.appsdeveloperblog.app.ws.io.entity.PasswordResetTokenEntity;
 import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
+import com.appsdeveloperblog.app.ws.io.repositories.PasswordResetTokenRepository;
 import com.appsdeveloperblog.app.ws.io.repositories.UserRepository;
 import com.appsdeveloperblog.app.ws.service.UserService;
 import com.appsdeveloperblog.app.ws.shared.AmazonSES;
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
   @Autowired
   UserRepository userRepository;
+
+  @Autowired
+  PasswordResetTokenRepository passwordResetTokenRepository;
 
   @Autowired
   Utils utils;
