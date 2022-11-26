@@ -1,6 +1,5 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
-import com.appsdeveloperblog.app.ws.io.repositories.PasswordResetTokenRepository;
 import com.appsdeveloperblog.app.ws.service.AddressService;
 import com.appsdeveloperblog.app.ws.service.UserService;
 import com.appsdeveloperblog.app.ws.shared.dto.AddressDTO;
