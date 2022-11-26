@@ -222,6 +222,6 @@ public class UserServiceImpl implements UserService {
           token
         );
 
-    return false;
+    return returnValue;
   }
 }

@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.shared;
 
+import com.amazonaws.auth.SystemPropertiesCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
@@ -30,7 +31,7 @@ public class AmazonSES {
     "<p>Thank you for registering with our mobile app. To complete registration process and be able to log in," +
     " click on the following link: " +
     "<a href='" +
-    "http://{awshost}:8080/verification-service/email-verification.html?token=$tokenValue" +
+    "http://localhost:8080/verification-service/email-verification.html?token=$tokenValue" +
     "'>" +
     "Final step to complete your registration" +
     "</a><br/><br/>" +
@@ -41,7 +42,7 @@ public class AmazonSES {
     "Please verify your email address. " +
     "Thank you for registering with our mobile app. To complete registration process and be able to log in," +
     " open then the following URL in your browser window: " +
-    "http://{awshost}:8080/verification-service/email-verification.html?token=$tokenValue" +
+    "http://localhost:8080/verification-service/email-verification.html?token=$tokenValue" +
     " Thank you! And we are waiting for you inside!";
 
   final String PASSWORD_RESET_HTMLBODY =
@@ -63,14 +64,18 @@ public class AmazonSES {
     " http://localhost:8080/verification-service/password-reset.html?token=$tokenValue" +
     " Thank you!";
 
-  public void verifyEmail(UserDto userDto) {
-    // You can also set your keys this way. And it will work!
-    System.setProperty("aws.accessKeyId", "{accessKeyId}");
-    System.setProperty("aws.secretKey", "{secretKey}");
+  private SystemPropertiesCredentialsProvider systemPropertiesCredentialsProvider;
 
+  public AmazonSES() {
+    systemPropertiesCredentialsProvider =
+      new SystemPropertiesCredentialsProvider();
+  }
+
+  public void verifyEmail(UserDto userDto) {
     AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder
       .standard()
       .withRegion(Regions.EU_WEST_2)
+      .withCredentials(systemPropertiesCredentialsProvider)
       .build();
 
     String htmlBodyWithToken = HTMLBODY.replace(
@@ -110,10 +115,12 @@ public class AmazonSES {
     String token
   ) {
     boolean returnValue = false;
+    SystemPropertiesCredentialsProvider systemPropertiesCredentialsProvider = new SystemPropertiesCredentialsProvider();
 
     AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder
       .standard()
       .withRegion(Regions.EU_WEST_2)
+      .withCredentials(systemPropertiesCredentialsProvider)
       .build();
 
     String htmlBodyWithToken = PASSWORD_RESET_HTMLBODY.replace(
