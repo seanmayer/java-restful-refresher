@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.app.ws.ui.model.request;
 
-public class PasswordResetModel {
+public class PasswordResetRequestModel {
 
   private String email;
 
