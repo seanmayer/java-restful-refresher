@@ -10,8 +10,12 @@ import static org.mockito.Mockito.when;
 
 import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
 import com.appsdeveloperblog.app.ws.io.repositories.UserRepository;
+import com.appsdeveloperblog.app.ws.shared.AmazonSES;
 import com.appsdeveloperblog.app.ws.shared.Utils;
+import com.appsdeveloperblog.app.ws.shared.dto.AddressDTO;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,6 +41,9 @@ public class UserServiceImplTest {
   @Mock
   BCryptPasswordEncoder bCryptPasswordEncoder;
 
+  @Mock
+  AmazonSES amazonSES;
+
   String userId = "asdfghjkl";
   String encryptedPassword = "qwertyuiop";
   UserEntity userEntity;
@@ -48,6 +55,8 @@ public class UserServiceImplTest {
     userEntity.setFirstName("Sean");
     userEntity.setUserId(userId);
     userEntity.setEncryptPassword(encryptedPassword);
+    userEntity.setEmail("test@test.com");
+    userEntity.setEmailVerificationToken("lkjhgfdsa");
   }
 
   @Test
@@ -78,8 +87,20 @@ public class UserServiceImplTest {
     when(utils.generatedUserId(anyInt())).thenReturn(userId);
     when(bCryptPasswordEncoder.encode(anyString()))
       .thenReturn(encryptedPassword);
-    when(userRepository.save(any(UserEntity.class)))
-      .thenReturn(userEntity);
+    when(userRepository.save(any(UserEntity.class))).thenReturn(userEntity);
+
+    AddressDTO addressDto = new AddressDTO();
+    addressDto.setType("shipping");
+
+    List<AddressDTO> addresses = new ArrayList<>();
+    addresses.add(addressDto);
+
+    UserDto userDto = new UserDto();
+    userDto.setAddresses(addresses);
+
+    UserDto storedUserDetails = userService.createUser(userDto);
+    assertNotNull(storedUserDetails);
+    assertEquals(userEntity.getFirstName(), storedUserDetails.getFirstName());
   }
 
   @AfterEach

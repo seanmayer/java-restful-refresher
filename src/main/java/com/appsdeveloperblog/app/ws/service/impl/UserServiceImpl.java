@@ -41,6 +41,9 @@ public class UserServiceImpl implements UserService {
   @Autowired
   BCryptPasswordEncoder bCryptPasswordEncoder;
 
+  @Autowired
+  AmazonSES amazonSES;
+
   @Override
   public UserDto createUser(UserDto user) {
     if (userRepository.findByEmail(user.getEmail()) != null) {
@@ -74,7 +77,7 @@ public class UserServiceImpl implements UserService {
 
     UserDto returnValue = modelMapper.map(storedUserDetails, UserDto.class);
 
-    new AmazonSES().verifyEmail(returnValue);
+    amazonSES.verifyEmail(returnValue);
 
     return returnValue;
   }
