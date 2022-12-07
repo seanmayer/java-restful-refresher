@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -96,6 +97,7 @@ public class UserServiceImplTest {
     when(bCryptPasswordEncoder.encode(anyString()))
       .thenReturn(encryptedPassword);
     when(userRepository.save(any(UserEntity.class))).thenReturn(userEntity);
+    Mockito.doNothing().when(amazonSES).verifyEmail(any(UserDto.class));;
 
     UserDto userDto = new UserDto();
     userDto.setAddresses(getAddressDTOs());
