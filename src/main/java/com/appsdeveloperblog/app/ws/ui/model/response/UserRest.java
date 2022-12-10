@@ -45,7 +45,7 @@ public class UserRest {
 
 
  public List<AddressRest> getAddresses() {
-  return this.addresses;
+  return addresses;
  }
 
  public void setAddresses(List<AddressRest> addresses) {
