@@ -1,11 +1,26 @@
+#Spring properties
 server.error.whitelabel.enabled=false
-spring.datasource.username=
-spring.datasource.password=
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/photo_app
-spring.jpa.hibernate.ddl-auto=update
-tokenSecret=tokenSecret
 server.error.include-stacktrace=never
 server.servlet.context-path=/mobile-app-ws
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialect
+tokenSecret=tokenSecret
+
+#spring.datasource.username=
+#spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+
+#H2 database
+server.port=8888
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+#MySQL database
+#server.port=8080
+#spring.datasource.url=jdbc:mysql://127.0.0.1:3306/photo_app
+
+#AWS RDS database
+#spring.datasource.url=
+
+#AWS SES email service
 aws.accessKeyId=
 aws.secretKey=
