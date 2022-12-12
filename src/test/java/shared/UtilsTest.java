@@ -1,10 +1,10 @@
 package shared;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +35,19 @@ public class UtilsTest {
  }
 
  @Test
- @Disabled
+ void testHasTokenNotExpired() {
+  String token = utils.generateEmailVerificationToken("asdfghjkl");
+  assertNotNull(token);
+  boolean hasTokenExpired = utils.hasTokenExpired(token);
+  assertFalse(hasTokenExpired);
+ }
+
+ @Test
  void testHasTokenExpired() {
-  fail("Not yet implemented");
+  String expiredToken = "qwerasdfzxcv1234567890";
+  assertNotNull(expiredToken);
+  boolean hasTokenExpired = utils.hasTokenExpired(expiredToken);
+  assertTrue(hasTokenExpired);
  }
  
 }

@@ -1,15 +1,14 @@
 package com.appsdeveloperblog.app.ws.shared;
 
+import com.appsdeveloperblog.app.ws.security.SecurityConstants;
+import com.appsdeveloperblog.app.ws.security.TokenUtil;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
 import java.security.SecureRandom;
 import java.util.Date;
 import java.util.Random;
 import org.springframework.stereotype.Service;
-
-import com.appsdeveloperblog.app.ws.security.SecurityConstants;
-import com.appsdeveloperblog.app.ws.security.TokenUtil;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 
 @Service
 public class Utils {
@@ -35,40 +34,49 @@ public class Utils {
   }
 
   public static boolean hasTokenExpired(String token) {
-    
-    Claims claims = Jwts
-      .parser()
-      .setSigningKey(TokenUtil.getSecretKey())
-      .parseClaimsJws(token)
-      .getBody();
+    boolean returnValue = false;
 
-    Date tokenExpirationDate = claims.getExpiration();
-    Date todayDate = new Date();
-    
-    return tokenExpirationDate.before(todayDate);
+    try {
+      Claims claims = Jwts
+        .parser()
+        .setSigningKey(TokenUtil.getSecretKey())
+        .parseClaimsJws(token)
+        .getBody();
+
+      Date tokenExpirationDate = claims.getExpiration();
+      Date todayDate = new Date();
+
+      return tokenExpirationDate.before(todayDate);
+    } catch (JwtException ex) {
+      returnValue = true;
+    }
+
+    return returnValue;
   }
 
   public String generateEmailVerificationToken(String userId) {
-    
-      String token = Jwts
+    String token = Jwts
       .builder()
       .setId(userId)
-      .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
+      .setExpiration(
+        new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME)
+      )
       .signWith(TokenUtil.getSecretKey())
       .compact();
 
-      return token;
+    return token;
   }
 
   public String generatePasswordResetToken(String userId) {
-    
     String token = Jwts
-    .builder()
-    .setId(userId)
-    .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
-    .signWith(TokenUtil.getSecretKey())
-    .compact();
-    
+      .builder()
+      .setId(userId)
+      .setExpiration(
+        new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME)
+      )
+      .signWith(TokenUtil.getSecretKey())
+      .compact();
+
     return token;
   }
 }
