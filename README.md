@@ -32,7 +32,7 @@ Spring Framework is a Java platform that provides comprehensive infrastructure s
 2. Run `./mvnw install` this will compile, build the project and unit tests
 3. Run `./mvnw spring-boot:run` this will run the RESTful webservices application in a apache tomcat server container
 
-### Running Application as a Java App (with a Apache tomcat container)
+### Running Application as a Java App (with an Apache tomcat container)
 1. `Run `./mvnw install` this will compile, build the project and unit tests (create jar in target)
 2. `cd /mobile-app-ws/target`
 3. `cp mobile-app-ws-0.0.1-SNAPSHOT.jar /Users/{user-name}/Desktop`
@@ -464,4 +464,15 @@ Increase the max-file-size and max-request-size
 ### Reset Password Service
 
 ![Screenshot](readme/images/reset-password-sequence.png)
+
+## H2 In-Memory Database Set up
+
+1. For setup, please reference commit id: https://github.com/seanmayer/java-restful-refresher/commit/5de8ce0ad5bb5f77638e8740cacc4f780a4a628c (and post commits after) 
+
+2. Run project
+3. Navigate to http://localhost:8888/mobile-app-ws/h2-console/
+a) you can change h2 path in `application.properties` file `spring.h2.console.path=/h2-console`\
+4. H2 console supports a number of relational databases that you can connect to besides H2
+5. Using the `application.properties` file configuration you should be able to use the connection details defined in there to connect to H2 database:
+![Screenshot](readme/images/h2.png)
 
