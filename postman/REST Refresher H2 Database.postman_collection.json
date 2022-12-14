@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "81938849-9fd3-40d0-9f2c-67a559545d29",
-		"name": "REST Refresher",
+		"_postman_id": "fa0616b0-c703-4439-bbd2-960c8ec933c4",
+		"name": "REST Refresher H2 Database",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21313989"
 	},
@@ -42,12 +42,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users",
+					"raw": "http://{{local}}:8888/mobile-app-ws/users",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users"
@@ -91,12 +91,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users",
+					"raw": "http://{{local}}:8888/mobile-app-ws/users",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users"
@@ -118,12 +118,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/mobile-app-ws/users/email-verification?token=eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJHREFhUjFXOTVnTGN6YU5Ra3k0RjgyZ3NNNEpsU2IiLCJleHAiOjE2Njg4NDI0MTV9.vepSHKKARSbVpt06OBwEe9uQwG7zu_HgzkwXvsrqOOcztFxciMOJZvuUK3L6G3ToHLr-SMFJL4gXJjl1dX7Q_Q",
+					"raw": "http://localhost:8888/mobile-app-ws/users/email-verification?token=eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJHREFhUjFXOTVnTGN6YU5Ra3k0RjgyZ3NNNEpsU2IiLCJleHAiOjE2Njg4NDI0MTV9.vepSHKKARSbVpt06OBwEe9uQwG7zu_HgzkwXvsrqOOcztFxciMOJZvuUK3L6G3ToHLr-SMFJL4gXJjl1dX7Q_Q",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users",
@@ -174,12 +174,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users/login",
+					"raw": "http://{{local}}:8888/mobile-app-ws/users/login",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users",
@@ -223,12 +223,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"raw": "http://{{local}}:8888/mobile-app-ws/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users",
@@ -267,12 +267,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users?page=1&limit=1",
+					"raw": "http://{{local}}:8888/mobile-app-ws/users?page=1&limit=1",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users"
@@ -325,12 +325,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users/FN73bXMTNQOXlUr0ePJPxrEB5TcStX",
+					"raw": "http://{{local}}:8888/mobile-app-ws/users/FN73bXMTNQOXlUr0ePJPxrEB5TcStX",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users",
@@ -375,12 +375,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users/FN73bXMTNQOXlUr0ePJPxrEB5TcStX/addresses",
+					"raw": "http://{{local}}:8888/mobile-app-ws/users/FN73bXMTNQOXlUr0ePJPxrEB5TcStX/addresses",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users",
@@ -423,12 +423,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{local}}:8080/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
+					"raw": "http://{{local}}:8888/users/916JP9NWBNsgt2gKk2EKM7N74o17oD",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"users",
 						"916JP9NWBNsgt2gKk2EKM7N74o17oD"
@@ -454,12 +454,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://{{local}}:8080/mobile-app-ws/users/V3OUh0A0f3M3bqfCp5wFhpd9vR9XIL/addresses/8cupdDY84xfSY1fWwFnGlsM1K10vi2",
+					"raw": "http://{{local}}:8888/mobile-app-ws/users/V3OUh0A0f3M3bqfCp5wFhpd9vR9XIL/addresses/8cupdDY84xfSY1fWwFnGlsM1K10vi2",
 					"protocol": "http",
 					"host": [
 						"{{local}}"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users",
@@ -488,12 +488,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/mobile-app-ws/users/F2splCSl0DLE3ct6pmq6Hdpqp8hcy9/addresses",
+					"raw": "http://localhost:8888/mobile-app-ws/users/F2splCSl0DLE3ct6pmq6Hdpqp8hcy9/addresses",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users",
@@ -521,12 +521,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/mobile-app-ws/users/F2splCSl0DLE3ct6pmq6Hdpqp8hcy9/addresses/NN2PaWl64nO5SyClaYaafJW48KgQhI",
+					"raw": "http://localhost:8888/mobile-app-ws/users/F2splCSl0DLE3ct6pmq6Hdpqp8hcy9/addresses/NN2PaWl64nO5SyClaYaafJW48KgQhI",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users",
@@ -559,12 +559,12 @@
 					"raw": "{\n    \"email\":\"test@test.com\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/mobile-app-ws/users/password-reset-request",
+					"raw": "http://localhost:8888/mobile-app-ws/users/password-reset-request",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8888",
 					"path": [
 						"mobile-app-ws",
 						"users",
