@@ -476,3 +476,7 @@ a) you can change h2 path in `application.properties` file `spring.h2.console.pa
 5. Using the `application.properties` file configuration you should be able to use the connection details defined in there to connect to H2 database:
 ![Screenshot](readme/images/h2.png)
 
+## REST Assured Integration Tests
+
+Run JUnit tests here: https://github.com/seanmayer/mobile-app-ws-rest-assured-test
+
