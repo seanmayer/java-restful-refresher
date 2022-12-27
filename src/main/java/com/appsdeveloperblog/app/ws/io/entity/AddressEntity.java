@@ -41,5 +41,4 @@ public class AddressEntity implements Serializable {
   @ManyToOne
   @JoinColumn(name = "users_id")
   private UserEntity userDetails;
-
 }
