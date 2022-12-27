@@ -8,9 +8,7 @@ import com.appsdeveloperblog.app.ws.service.AddressService;
 import com.appsdeveloperblog.app.ws.shared.dto.AddressDTO;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +33,6 @@ public class AddressServiceImpl implements AddressService {
     );
     for (AddressEntity addressEntity : addresses) {
       ModelMapper modelMapper = new ModelMapper();
-      modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
       returnValue.add(modelMapper.map(addressEntity, AddressDTO.class));
     }
 
@@ -48,10 +45,8 @@ public class AddressServiceImpl implements AddressService {
 
     AddressEntity addressEntity = addressRepository.findByAddressId(addressId);
     
-    if(addressEntity != null) {
-      ModelMapper modelMapper = new ModelMapper();
-      modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-      returnValue = modelMapper.map(addressEntity, AddressDTO.class);
+    if (addressEntity != null) {
+      returnValue = new ModelMapper().map(addressEntity, AddressDTO.class);
     }
 
     return returnValue;
