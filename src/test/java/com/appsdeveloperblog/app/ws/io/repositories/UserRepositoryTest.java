@@ -1,11 +1,10 @@
 package com.appsdeveloperblog.app.ws.io.repositories;
 
-import com.appsdeveloperblog.app.ws.io.entity.AddressEntity;
-import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.appsdeveloperblog.app.ws.io.entity.AddressEntity;
+import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,13 +33,15 @@ public class UserRepositoryTest {
 
   @Test
   void testGetVerifiedUsers() {
-   Pageable pageableRequest = PageRequest.of(1, 1);
-   Page<UserEntity> page = userRepository.findAllUsersWithConfirmedEmailAddress(pageableRequest);
-   assertNotNull(page);
-   
-         List<UserEntity> userEntities = page.getContent();
-         assertNotNull(userEntities);
-         assertTrue(userEntities.size() == 1);
+    Pageable pageableRequest = PageRequest.of(1, 1);
+    Page<UserEntity> page = userRepository.findAllUsersWithConfirmedEmailAddress(
+      pageableRequest
+    );
+    assertNotNull(page);
+
+    List<UserEntity> userEntities = page.getContent();
+    assertNotNull(userEntities);
+    assertTrue(userEntities.size() == 1);
   }
 
   private void createRecords() {
