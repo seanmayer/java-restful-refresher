@@ -8,6 +8,11 @@ tokenSecret=tokenSecret
 #spring.datasource.password=
 spring.jpa.hibernate.ddl-auto=update
 
+#Logging SQL Queries
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+spring.jpa.properties.hibernate.format_sql=true
+
 #H2 database
 server.port=8888
 spring.h2.console.enabled=true
