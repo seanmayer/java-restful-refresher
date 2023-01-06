@@ -308,6 +308,10 @@ server.servlet.context-path=/mobile-app-ws
 3. Navigate to `localhost:8080/login`
 ![Screenshot](readme/images/spring_security.png)
 
+### When to enable CORS?
+
+Cross Origin Resource Scripting - is only required when we need to allow different domain names or other origins (this include port numbers, comm protocols) to access our API, this is disabed by default in Springboot.
+
 ### Verification Service Process
 
 - Verification service: https://github.com/seanmayer/verification-service
@@ -479,4 +483,8 @@ a) you can change h2 path in `application.properties` file `spring.h2.console.pa
 ## REST Assured Integration Tests
 
 Run JUnit tests here: https://github.com/seanmayer/mobile-app-ws-rest-assured-test
+
+Further Integration tests using native queries and JPQL queries in `/src/test/java/com/appsdeveloperblog/app/ws/io/repositories`
+
+
 
