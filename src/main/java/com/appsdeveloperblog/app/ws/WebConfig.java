@@ -13,6 +13,6 @@ public class WebConfig implements WebMvcConfigurer {
       .addMapping("/**")
       .allowedOrigins("*")
       .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
-      .allowCredentials(true);
+      .allowCredentials(false);
   }
 }

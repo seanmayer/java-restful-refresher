@@ -1,6 +1,8 @@
 package com.appsdeveloperblog.app.ws.security;
 
 import com.appsdeveloperblog.app.ws.service.UserService;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
@@ -26,6 +31,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
+      .cors()
+      .and()
       .csrf()
       .disable()
       .authorizeRequests()
@@ -33,7 +40,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
       .permitAll()
       .antMatchers(HttpMethod.GET, SecurityConstants.VERIFICATION_EMAIL_URL)
       .permitAll()
-      .antMatchers(HttpMethod.POST, SecurityConstants.PASSWORD_RESET_REQUEST_URL)
+      .antMatchers(
+        HttpMethod.POST,
+        SecurityConstants.PASSWORD_RESET_REQUEST_URL
+      )
       .permitAll()
       .antMatchers(HttpMethod.POST, SecurityConstants.PASSWORD_RESET_URL)
       .permitAll()
@@ -64,5 +74,23 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     );
     filter.setFilterProcessesUrl("/users/login");
     return filter;
+  }
+
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+    final CorsConfiguration config = new CorsConfiguration();
+    
+    config.setAllowCredentials(false);
+    config.addAllowedOrigin("*");
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("*");
+
+    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+    source.registerCorsConfiguration("/**", config);
+    
+    return source;
+
+    
   }
 }
