@@ -312,6 +312,11 @@ server.servlet.context-path=/mobile-app-ws
 
 Cross Origin Resource Scripting - is only required when we need to allow different domain names or other origins (this include port numbers, comm protocols) to access our API, this is disabed by default in Springboot.
 
+Example below of the cross origin annoation, this can be applied on the controller request methods or the entire class itself:
+
+@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:8080","http://localhost:8081")
+
 ### Verification Service Process
 
 - Verification service: https://github.com/seanmayer/verification-service
