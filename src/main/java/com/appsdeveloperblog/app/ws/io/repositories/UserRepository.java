@@ -2,8 +2,10 @@ package com.appsdeveloperblog.app.ws.io.repositories;
 
 import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -42,4 +44,23 @@ public interface UserRepository
     nativeQuery = true
   )
   List<UserEntity> findUserByKeyword(@Param("keyword") String keyword);
+
+  @Query(
+    value = "select u.first_name, u.last_name from Users u where u.first_name LIKE %:keyword% or u.last_name LIKE %:keyword%",
+    nativeQuery = true
+  )
+  List<Object[]> findUserFirstNameAndLastNameByKeyword(
+    @Param("keyword") String keyword
+  );
+
+  @Transactional
+  @Modifying
+  @Query(
+    value = "update Users u set u.EMAIL_VERIFICATION_STATUS = :status where u.USER_ID = :userId",
+    nativeQuery = true
+  )
+  void updateUserEmailVerificationStatus(
+    @Param("status") boolean status,
+    @Param("userId") String userId
+  );
 }

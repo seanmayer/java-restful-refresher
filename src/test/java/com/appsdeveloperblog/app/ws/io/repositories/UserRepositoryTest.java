@@ -3,9 +3,10 @@ package com.appsdeveloperblog.app.ws.io.repositories;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.appsdeveloperblog.app.ws.io.entity.AddressEntity;
+import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,9 +16,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import com.appsdeveloperblog.app.ws.io.entity.AddressEntity;
-import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -49,7 +47,9 @@ public class UserRepositoryTest {
   @Test
   void testFindUserByFirstName() {
     String firstName = "Sean";
-    List<UserEntity> userEntities = userRepository.findUserByFirstName(firstName);
+    List<UserEntity> userEntities = userRepository.findUserByFirstName(
+      firstName
+    );
     assertNotNull(userEntities);
     assertTrue(userEntities.size() == 2);
 
@@ -85,7 +85,9 @@ public class UserRepositoryTest {
   @Test
   void testFindUserFirstNameAndLastNameByKeyword() {
     String keyword = "May";
-    List<Object[]> records = userRepository.findUserFirstNameAndLastNameByKeyword(keyword);
+    List<Object[]> records = userRepository.findUserFirstNameAndLastNameByKeyword(
+      keyword
+    );
     assertNotNull(records);
     assertTrue(records.size() == 2);
 
@@ -100,12 +102,26 @@ public class UserRepositoryTest {
     assertNotNull(userLastName);
 
     assertTrue(
-      userFirstName.contains(keyword) ||
-      userLastName.contains(keyword)
+      userFirstName.contains(keyword) || userLastName.contains(keyword)
     );
 
     System.out.println("userFirstName: " + userFirstName);
     System.out.println("userLastName: " + userLastName);
+  }
+
+  @Test
+  void testUpdateUserEmailVerificationStatus() {
+    boolean newEmailVerificationStatus = false;
+    userRepository.updateUserEmailVerificationStatus(
+      newEmailVerificationStatus,
+      "qwertyuio123456"
+    );
+
+    UserEntity storedDetails = userRepository.findByUserId("qwertyuio123456");
+
+    boolean storedEmailVerificationStatus = storedDetails.getEmailVerificationStatus();
+
+    assertTrue(storedEmailVerificationStatus == newEmailVerificationStatus);
   }
 
   private void createRecords() {
