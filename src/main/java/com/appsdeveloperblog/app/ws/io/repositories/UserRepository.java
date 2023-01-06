@@ -63,4 +63,7 @@ public interface UserRepository
     @Param("status") boolean status,
     @Param("userId") String userId
   );
+
+  @Query("select user from UserEntity user where user.userId = :userId")
+  UserEntity findUserEntityByUserId(@Param("userId") String userId);
 }

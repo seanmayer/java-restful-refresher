@@ -124,6 +124,16 @@ public class UserRepositoryTest {
     assertTrue(storedEmailVerificationStatus == newEmailVerificationStatus);
   }
 
+  @Test
+  void testFindUserEntityByUserId(){
+    String userId = "qwertyuio123456";
+    UserEntity userEntity = userRepository.findUserEntityByUserId(userId);
+
+    assertNotNull(userEntity);
+    assertTrue(userEntity.getUserId().equals(userId));
+    
+  }
+
   private void createRecords() {
     UserEntity userEntity = new UserEntity();
     userEntity.setFirstName("Sean");
