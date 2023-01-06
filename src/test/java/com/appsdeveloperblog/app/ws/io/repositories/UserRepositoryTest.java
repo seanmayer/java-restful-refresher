@@ -82,6 +82,32 @@ public class UserRepositoryTest {
     );
   }
 
+  @Test
+  void testFindUserFirstNameAndLastNameByKeyword() {
+    String keyword = "May";
+    List<Object[]> records = userRepository.findUserFirstNameAndLastNameByKeyword(keyword);
+    assertNotNull(records);
+    assertTrue(records.size() == 2);
+
+    Object[] userRecord = records.get(0);
+
+    assertTrue(userRecord.length == 2);
+
+    String userFirstName = String.valueOf(userRecord[0]);
+    String userLastName = String.valueOf(userRecord[1]);
+
+    assertNotNull(userFirstName);
+    assertNotNull(userLastName);
+
+    assertTrue(
+      userFirstName.contains(keyword) ||
+      userLastName.contains(keyword)
+    );
+
+    System.out.println("userFirstName: " + userFirstName);
+    System.out.println("userLastName: " + userLastName);
+  }
+
   private void createRecords() {
     UserEntity userEntity = new UserEntity();
     userEntity.setFirstName("Sean");
