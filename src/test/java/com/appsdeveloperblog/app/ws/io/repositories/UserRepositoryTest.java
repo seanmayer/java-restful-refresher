@@ -134,6 +134,25 @@ public class UserRepositoryTest {
     
   }
 
+  @Test
+  void testGetUserEntityFullNameById(){
+    String userId = "qwertyuio123456";
+    List<Object[]> userRecords = userRepository.getUserEntityFullNameById(userId);
+
+    assertNotNull(userRecords);
+    assertTrue(userRecords.size() == 1);
+
+    Object[] userRecord = userRecords.get(0);
+
+    assertTrue(userRecord.length == 2);
+
+    String userFirstName = String.valueOf(userRecord[0]);
+    String userLastName = String.valueOf(userRecord[1]);  
+
+    assertNotNull(userFirstName);
+    assertNotNull(userLastName);
+  }
+
   private void createRecords() {
     UserEntity userEntity = new UserEntity();
     userEntity.setFirstName("Sean");

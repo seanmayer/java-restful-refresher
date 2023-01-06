@@ -66,4 +66,8 @@ public interface UserRepository
 
   @Query("select user from UserEntity user where user.userId = :userId")
   UserEntity findUserEntityByUserId(@Param("userId") String userId);
+
+  @Query("select user.firstName, user.lastName from UserEntity user where user.userId = :userId")
+  List<Object[]> getUserEntityFullNameById(@Param("userId") String userId);
+
 }
