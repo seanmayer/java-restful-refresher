@@ -1,9 +1,7 @@
 package com.appsdeveloperblog.app.ws.io.repositories;
 
 import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
-
 import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -38,4 +36,10 @@ public interface UserRepository
     nativeQuery = true
   )
   List<UserEntity> findUserByLastName(@Param("lastName") String lastName);
+
+  @Query(
+    value = "select * from Users u where u.FIRST_NAME LIKE %:keyword% or u.LAST_NAME LIKE %:keyword%",
+    nativeQuery = true
+  )
+  List<UserEntity> findUserByKeyword(@Param("keyword") String keyword);
 }
