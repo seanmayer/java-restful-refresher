@@ -67,7 +67,19 @@ public interface UserRepository
   @Query("select user from UserEntity user where user.userId = :userId")
   UserEntity findUserEntityByUserId(@Param("userId") String userId);
 
-  @Query("select user.firstName, user.lastName from UserEntity user where user.userId = :userId")
+  @Query(
+    "select user.firstName, user.lastName from UserEntity user where user.userId = :userId"
+  )
   List<Object[]> getUserEntityFullNameById(@Param("userId") String userId);
 
+  @Transactional
+  @Modifying
+  @Query(
+    "update UserEntity user set user.emailVerificationStatus = :status where user.userId = :userId"
+  )
+  void updateUserEntityEmailVerificationStatus(
+    @Param("status") boolean status,
+    @Param("userId") String userId
+  );
+  
 }

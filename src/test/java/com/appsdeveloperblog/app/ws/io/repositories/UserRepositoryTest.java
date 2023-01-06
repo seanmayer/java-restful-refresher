@@ -136,8 +136,7 @@ public class UserRepositoryTest {
 
   @Test
   void testGetUserEntityFullNameById(){
-    String userId = "qwertyuio123456";
-    List<Object[]> userRecords = userRepository.getUserEntityFullNameById(userId);
+    List<Object[]> userRecords = userRepository.getUserEntityFullNameById("qwertyuio123456");
 
     assertNotNull(userRecords);
     assertTrue(userRecords.size() == 1);
@@ -153,6 +152,19 @@ public class UserRepositoryTest {
     assertNotNull(userLastName);
   }
 
+  @Test
+  void testUpdateUserEntityEmailVerificationStatus(){
+    boolean newEmailVerificationStatus = true;
+    String userId = "qwertyuio123456";
+
+    userRepository.updateUserEntityEmailVerificationStatus(newEmailVerificationStatus, userId);
+
+    UserEntity storedUserDetails = userRepository.findByUserId(userId);
+
+    boolean storedEmailVerificationStatus = storedUserDetails.getEmailVerificationStatus();
+
+    assertTrue(storedEmailVerificationStatus == newEmailVerificationStatus);
+  }
   private void createRecords() {
     UserEntity userEntity = new UserEntity();
     userEntity.setFirstName("Sean");
