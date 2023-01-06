@@ -1,6 +1,9 @@
 package com.appsdeveloperblog.app.ws.io.repositories;
 
 import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
+
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -22,4 +25,10 @@ public interface UserRepository
   Page<UserEntity> findAllUsersWithConfirmedEmailAddress(
     Pageable pageableRequest
   );
+
+  @Query(
+    value = "select * from Users u where u.FIRST_NAME = ?1",
+    nativeQuery = true
+  )
+  List<UserEntity> findUserByFirstName(String firstName);
 }
