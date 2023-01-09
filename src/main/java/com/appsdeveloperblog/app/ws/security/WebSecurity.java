@@ -5,6 +5,7 @@ import com.appsdeveloperblog.app.ws.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,6 +16,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
   private final UserService userDetailsService;
@@ -49,6 +51,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
       .permitAll()
       .antMatchers(SecurityConstants.H2_CONSOLE)
       .permitAll()
+      .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
+      .and()
+      .authorizeRequests()
       .anyRequest()
       .authenticated()
       .and()
