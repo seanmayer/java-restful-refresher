@@ -491,5 +491,16 @@ Run JUnit tests here: https://github.com/seanmayer/mobile-app-ws-rest-assured-te
 
 Further Integration tests using native queries and JPQL queries in `/src/test/java/com/appsdeveloperblog/app/ws/io/repositories`
 
+## Swagger
+
+API Documentation.
+
+References:
+
+JSON: `http://localhost:8080/mobile-app-ws/v2/api-docs`
+
+Browser docs: `http://localhost:8080/mobile-app-ws/swagger-ui.html`
+
+
 
 
