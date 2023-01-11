@@ -53,7 +53,7 @@ public class UserController {
   AddressService addressService;
 
   @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
   })
   @GetMapping(
     path = "/{id}",
@@ -71,7 +71,7 @@ public class UserController {
   }
 
   @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
   })
   @PostMapping(
     consumes = {
@@ -102,7 +102,7 @@ public class UserController {
   }
 
   @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
   })
   @PutMapping(
     path = "/{id}",
@@ -133,7 +133,7 @@ public class UserController {
   }
 
   @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
   })
   @DeleteMapping(
     path = "/{id}",
@@ -153,7 +153,7 @@ public class UserController {
   }
 
   @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
   })
   @GetMapping(
     produces = {
@@ -178,7 +178,7 @@ public class UserController {
 
   // http://localhost:8080/mobile-app-ws/users/{id}/addresses
   @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
   })
   @GetMapping(
     path = "/{userId}/addresses",
@@ -226,7 +226,7 @@ public class UserController {
   }
 
   @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
   })
   @GetMapping(
     path = "/{userId}/addresses/{addressId}",
