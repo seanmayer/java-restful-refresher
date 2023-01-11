@@ -11,6 +11,10 @@ import com.appsdeveloperblog.app.ws.ui.model.response.AddressRest;
 import com.appsdeveloperblog.app.ws.ui.model.response.OperationStatusModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.RequestOperationStatus;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +52,9 @@ public class UserController {
   @Autowired(required = true)
   AddressService addressService;
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+  })
   @GetMapping(
     path = "/{id}",
     produces = {
@@ -63,6 +70,9 @@ public class UserController {
     return returnValue;
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+  })
   @PostMapping(
     consumes = {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
@@ -91,6 +101,9 @@ public class UserController {
     return returnValue;
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+  })
   @PutMapping(
     path = "/{id}",
     consumes = {
@@ -119,6 +132,9 @@ public class UserController {
     return returnValue;
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+  })
   @DeleteMapping(
     path = "/{id}",
     produces = {
@@ -136,6 +152,9 @@ public class UserController {
     return returnValue;
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+  })
   @GetMapping(
     produces = {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
@@ -158,6 +177,9 @@ public class UserController {
   }
 
   // http://localhost:8080/mobile-app-ws/users/{id}/addresses
+  @ApiImplicitParams({
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+  })
   @GetMapping(
     path = "/{userId}/addresses",
     produces = {
@@ -203,6 +225,9 @@ public class UserController {
     return CollectionModel.of(returnValue, userLink, selfLink);
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header")
+  })
   @GetMapping(
     path = "/{userId}/addresses/{addressId}",
     produces = {
