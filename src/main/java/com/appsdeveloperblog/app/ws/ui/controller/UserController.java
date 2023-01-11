@@ -70,9 +70,7 @@ public class UserController {
     return returnValue;
   }
 
-  @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
-  })
+
   @PostMapping(
     consumes = {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
