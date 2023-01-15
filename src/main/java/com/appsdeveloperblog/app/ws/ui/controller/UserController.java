@@ -11,9 +11,10 @@ import com.appsdeveloperblog.app.ws.ui.model.response.AddressRest;
 import com.appsdeveloperblog.app.ws.ui.model.response.OperationStatusModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.RequestOperationStatus;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
-
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -52,9 +53,21 @@ public class UserController {
   @Autowired(required = true)
   AddressService addressService;
 
-  @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
-  })
+  @Operation(
+    summary =  "The Get User Details Web Service Endpoint",
+    description = "${userController.GetUser.ApiOperation.Notes}"
+  )
+  @ApiImplicitParams(
+    {
+      @ApiImplicitParam(
+        name = "authorization",
+        value = "${userController.authorizationHeader.description}",
+        paramType = "header",
+        required = true,
+        dataTypeClass = String.class
+      ),
+    }
+  )
   @GetMapping(
     path = "/{id}",
     produces = {
@@ -69,7 +82,6 @@ public class UserController {
 
     return returnValue;
   }
-
 
   @PostMapping(
     consumes = {
@@ -99,9 +111,17 @@ public class UserController {
     return returnValue;
   }
 
-  @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
-  })
+  @ApiImplicitParams(
+    {
+      @ApiImplicitParam(
+        name = "authorization",
+        value = "${userController.authorizationHeader.description}",
+        paramType = "header",
+        required = true,
+        dataTypeClass = String.class
+      ),
+    }
+  )
   @PutMapping(
     path = "/{id}",
     consumes = {
@@ -130,9 +150,17 @@ public class UserController {
     return returnValue;
   }
 
-  @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
-  })
+  @ApiImplicitParams(
+    {
+      @ApiImplicitParam(
+        name = "authorization",
+        value = "${userController.authorizationHeader.description}",
+        paramType = "header",
+        required = true,
+        dataTypeClass = String.class
+      ),
+    }
+  )
   @DeleteMapping(
     path = "/{id}",
     produces = {
@@ -150,9 +178,17 @@ public class UserController {
     return returnValue;
   }
 
-  @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
-  })
+  @ApiImplicitParams(
+    {
+      @ApiImplicitParam(
+        name = "authorization",
+        value = "${userController.authorizationHeader.description}",
+        paramType = "header",
+        required = true,
+        dataTypeClass = String.class
+      ),
+    }
+  )
   @GetMapping(
     produces = {
       MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE,
@@ -175,9 +211,17 @@ public class UserController {
   }
 
   // http://localhost:8080/mobile-app-ws/users/{id}/addresses
-  @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
-  })
+  @ApiImplicitParams(
+    {
+      @ApiImplicitParam(
+        name = "authorization",
+        value = "${userController.authorizationHeader.description}",
+        paramType = "header",
+        required = true,
+        dataTypeClass = String.class
+      ),
+    }
+  )
   @GetMapping(
     path = "/{userId}/addresses",
     produces = {
@@ -223,9 +267,17 @@ public class UserController {
     return CollectionModel.of(returnValue, userLink, selfLink);
   }
 
-  @ApiImplicitParams({
-    @ApiImplicitParam(name="authorization", value="${userController.authorizationHeader.description}", paramType="header", required=true, dataTypeClass = String.class)
-  })
+  @ApiImplicitParams(
+    {
+      @ApiImplicitParam(
+        name = "authorization",
+        value = "${userController.authorizationHeader.description}",
+        paramType = "header",
+        required = true,
+        dataTypeClass = String.class
+      ),
+    }
+  )
   @GetMapping(
     path = "/{userId}/addresses/{addressId}",
     produces = {
@@ -320,7 +372,9 @@ public class UserController {
       passwordResetModel.getEmail()
     );
 
-    returnValue.setOperationName(RequestOperationName.REQUEST_PASSWORD_RESET.name());
+    returnValue.setOperationName(
+      RequestOperationName.REQUEST_PASSWORD_RESET.name()
+    );
     returnValue.setOperationResult(RequestOperationStatus.ERROR.name());
 
     if (operationResult) {
@@ -336,7 +390,6 @@ public class UserController {
       MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE,
     }
   )
-
   public OperationStatusModel resetPassword(
     @RequestBody PasswordResetModel passwordResetModel
   ) {
