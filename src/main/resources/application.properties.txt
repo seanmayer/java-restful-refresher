@@ -16,6 +16,7 @@ spring.jpa.properties.hibernate.format_sql=true
 #SwaggerConfig
 spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
 userController.authorizationHeader.description=Bearer JWT Token
+userController.GetUser.ApiOperation.Notes=This is the description of the API
 
 #H2 database
 server.port=8888
