@@ -13,7 +13,6 @@ import com.appsdeveloperblog.app.ws.ui.model.response.RequestOperationStatus;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 
 import java.lang.reflect.Type;
