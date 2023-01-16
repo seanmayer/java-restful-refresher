@@ -1,17 +1,19 @@
 package com.appsdeveloperblog.app.ws.io.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import lombok.Data;
 
 @Data
@@ -48,4 +50,14 @@ public class UserEntity implements Serializable {
   @OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL)
   private List<AddressEntity> addresses;
 
- }
+  @ManyToMany(cascade = {CascadeType.PERSIST})
+  @JoinTable(
+    name = "users_roles",
+    joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(
+      name = "roles_id",
+      referencedColumnName = "id"
+    )
+  )
+  private Collection<RoleEntity> roles;
+}
