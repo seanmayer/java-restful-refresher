@@ -42,4 +42,10 @@ public class RoleEntity implements Serializable {
     )
   )
   private Collection<AuthorityEntity> authorities;
+
+  public RoleEntity() {}
+
+  public RoleEntity(String name) {
+    this.name = name;
+  }
 }
