@@ -5,6 +5,7 @@ import com.appsdeveloperblog.app.ws.io.entity.PasswordResetTokenEntity;
 import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
 import com.appsdeveloperblog.app.ws.io.repositories.PasswordResetTokenRepository;
 import com.appsdeveloperblog.app.ws.io.repositories.UserRepository;
+import com.appsdeveloperblog.app.ws.security.UserPrinciple;
 import com.appsdeveloperblog.app.ws.service.UserService;
 import com.appsdeveloperblog.app.ws.shared.AmazonSES;
 import com.appsdeveloperblog.app.ws.shared.Utils;
@@ -20,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -91,20 +91,18 @@ public class UserServiceImpl implements UserService {
       throw new UsernameNotFoundException(email);
     }
 
-    return new User(
-      userEntity.getEmail(),
-      userEntity.getEncryptPassword(),
-      userEntity.getEmailVerificationStatus(),
-      true,
-      true,
-      true,
-      new ArrayList<>()
-    );
+    return new UserPrinciple(userEntity);
+
     // return new User(
     //   userEntity.getEmail(),
     //   userEntity.getEncryptPassword(),
+    //   userEntity.getEmailVerificationStatus(),
+    //   true,
+    //   true,
+    //   true,
     //   new ArrayList<>()
     // );
+
   }
 
   @Override
