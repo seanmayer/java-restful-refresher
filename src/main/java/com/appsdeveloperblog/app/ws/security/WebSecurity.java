@@ -61,11 +61,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         "/webjars/**"
       )
       .permitAll()
+      .antMatchers(HttpMethod.DELETE, "/users/**")
+      .hasRole("ADMIN")
       .anyRequest()
       .authenticated()
       .and()
       .addFilter(getAuthenticationFilter())
-      .addFilter(new AuthorizationFilter(authenticationManager(), userRepository))
+      .addFilter(
+        new AuthorizationFilter(authenticationManager(), userRepository)
+      )
       .sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
