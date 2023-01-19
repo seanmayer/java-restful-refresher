@@ -13,10 +13,16 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
+import com.appsdeveloperblog.app.ws.io.repositories.UserRepository;
+
 public class AuthorizationFilter extends BasicAuthenticationFilter {
 
-  public AuthorizationFilter(AuthenticationManager authManager) {
+  private final UserRepository UserRepository;
+
+  public AuthorizationFilter(AuthenticationManager authManager, UserRepository UserRepository) {
     super(authManager);
+    this.UserRepository = UserRepository;
   }
 
   @Override
@@ -58,10 +64,12 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
         .getSubject();
 
       if (user != null) {
+        UserEntity userEntity = UserRepository.findByEmail(user);
+        UserPrinciple userPrinciple = new UserPrinciple(userEntity);
         return new UsernamePasswordAuthenticationToken(
           user,
           null,
-          new ArrayList<>()
+          userPrinciple.getAuthorities()
         );
       }
     }

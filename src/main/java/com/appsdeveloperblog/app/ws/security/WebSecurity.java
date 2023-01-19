@@ -1,5 +1,6 @@
 package com.appsdeveloperblog.app.ws.security;
 
+import com.appsdeveloperblog.app.ws.io.repositories.UserRepository;
 import com.appsdeveloperblog.app.ws.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -18,13 +19,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
   private final UserService userDetailsService;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
+  private final UserRepository userRepository;
 
   public WebSecurity(
     UserService userDetailsService,
-    BCryptPasswordEncoder bCryptPasswordEncoder
+    BCryptPasswordEncoder bCryptPasswordEncoder,
+    UserRepository userRepository
   ) {
     this.userDetailsService = userDetailsService;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    this.userRepository = userRepository;
   }
 
   @Override
@@ -61,7 +65,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
       .authenticated()
       .and()
       .addFilter(getAuthenticationFilter())
-      .addFilter(new AuthorizationFilter(authenticationManager()))
+      .addFilter(new AuthorizationFilter(authenticationManager(), userRepository))
       .sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

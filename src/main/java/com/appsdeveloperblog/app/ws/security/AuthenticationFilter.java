@@ -56,7 +56,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     Authentication auth
   )
     throws IOException, ServletException {
-    String userName = ((User) auth.getPrincipal()).getUsername();
+    String userName = ((UserPrinciple) auth.getPrincipal()).getUsername();
     String token = TokenUtil.generateToken(userName);
 
     UserService userService = (UserService) SpringApplicationContext.getBean(
