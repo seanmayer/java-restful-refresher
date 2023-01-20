@@ -63,8 +63,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         "/webjars/**"
       )
       .permitAll()
-      .antMatchers(HttpMethod.DELETE, "/users/**")
-      .hasAnyRole("ADMIN","SUPER_ADMIN")
+      //.antMatchers(HttpMethod.DELETE, "/users/**")
+      //.hasAnyRole("ADMIN","SUPER_ADMIN")
       .anyRequest()
       .authenticated()
       .and()
