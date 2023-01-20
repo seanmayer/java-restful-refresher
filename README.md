@@ -308,6 +308,10 @@ server.servlet.context-path=/mobile-app-ws
 3. Navigate to `localhost:8080/login`
 ![Screenshot](readme/images/spring_security.png)
 
+### Adding Expression-Based Access Control to endpoints with Roles and Authorities
+
+https://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html
+
 ### When to enable CORS?
 
 Cross Origin Resource Scripting - is only required when we need to allow different domain names or other origins (this include port numbers, comm protocols) to access our API, this is disabed by default in Springboot.
