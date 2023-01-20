@@ -62,7 +62,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
       )
       .permitAll()
       .antMatchers(HttpMethod.DELETE, "/users/**")
-      .hasRole("ADMIN")
+      .hasAuthority("DELETE_AUTHORITY")
       .anyRequest()
       .authenticated()
       .and()
