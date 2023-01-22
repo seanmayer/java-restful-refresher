@@ -15,9 +15,15 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class UserEntity implements Serializable {
@@ -51,7 +57,7 @@ public class UserEntity implements Serializable {
   @OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL)
   private List<AddressEntity> addresses;
 
-  @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
+  @ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
   @JoinTable(
     name = "users_roles",
     joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),

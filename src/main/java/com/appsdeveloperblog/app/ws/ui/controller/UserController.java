@@ -2,6 +2,7 @@ package com.appsdeveloperblog.app.ws.ui.controller;
 
 import com.appsdeveloperblog.app.ws.service.AddressService;
 import com.appsdeveloperblog.app.ws.service.UserService;
+import com.appsdeveloperblog.app.ws.shared.Roles;
 import com.appsdeveloperblog.app.ws.shared.dto.AddressDTO;
 import com.appsdeveloperblog.app.ws.shared.dto.UserDto;
 import com.appsdeveloperblog.app.ws.ui.model.request.PasswordResetModel;
@@ -14,10 +15,10 @@ import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.v3.oas.annotations.Operation;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -56,7 +57,7 @@ public class UserController {
   AddressService addressService;
 
   @Operation(
-    summary =  "The Get User Details Web Service Endpoint",
+    summary = "The Get User Details Web Service Endpoint",
     description = "${userController.GetUser.ApiOperation.Notes}"
   )
   @ApiImplicitParams(
@@ -106,6 +107,7 @@ public class UserController {
     //BeanUtils.copyProperties(userDetails, userDto);
     ModelMapper modelMapper = new ModelMapper();
     UserDto userDto = modelMapper.map(userDetails, UserDto.class);
+    userDto.setRoles(new HashSet<>(Arrays.asList(Roles.ROLE_USER.name())));
 
     UserDto createdUser = userService.createUser(userDto);
 
@@ -164,8 +166,6 @@ public class UserController {
       ),
     }
   )
-
-
   @PreAuthorize("hasRole('ROLE_ADMIN') or #id == principal.userId") // only admin can delete user or user can delete himself
   //@PreAuthorize("hasAuthority('DELETE_AUTHORITY')")
   @Secured("ROLE_ADMIN")

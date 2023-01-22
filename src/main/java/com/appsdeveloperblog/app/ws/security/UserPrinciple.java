@@ -3,9 +3,8 @@ package com.appsdeveloperblog.app.ws.security;
 import com.appsdeveloperblog.app.ws.io.entity.AuthorityEntity;
 import com.appsdeveloperblog.app.ws.io.entity.RoleEntity;
 import com.appsdeveloperblog.app.ws.io.entity.UserEntity;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,8 +23,8 @@ public class UserPrinciple implements UserDetails {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    List<GrantedAuthority> authorities = new ArrayList<>();
-    List<AuthorityEntity> authorityEntities = new ArrayList<>();
+    Collection<GrantedAuthority> authorities = new HashSet<>();
+    Collection<AuthorityEntity> authorityEntities = new HashSet<>();
 
     Collection<RoleEntity> roles = this.userEntity.getRoles();
 
