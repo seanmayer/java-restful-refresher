@@ -162,6 +162,7 @@ public class UserController {
     }
   )
 
+  //@PreAuthorize("hasRole('ROLE_ADMIN'))
   @Secured("ROLE_ADMIN")
   @DeleteMapping(
     path = "/{id}",
