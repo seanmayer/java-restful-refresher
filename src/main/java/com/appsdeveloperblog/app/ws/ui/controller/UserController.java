@@ -164,6 +164,7 @@ public class UserController {
   )
 
 
+  @PreAuthorize("hasRole('ROLE_ADMIN') or #id == principal.userId") // only admin can delete user or user can delete himself
   //@PreAuthorize("hasAuthority('DELETE_AUTHORITY')")
   @Secured("ROLE_ADMIN")
   @DeleteMapping(

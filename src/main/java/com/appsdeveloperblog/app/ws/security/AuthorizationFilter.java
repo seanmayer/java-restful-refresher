@@ -3,7 +3,6 @@ package com.appsdeveloperblog.app.ws.security;
 import io.jsonwebtoken.Jwts;
 import java.io.IOException;
 import java.security.Key;
-import java.util.ArrayList;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -65,9 +64,10 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
 
       if (user != null) {
         UserEntity userEntity = UserRepository.findByEmail(user);
+        if(userEntity == null) return null;
         UserPrinciple userPrinciple = new UserPrinciple(userEntity);
         return new UsernamePasswordAuthenticationToken(
-          user,
+          userPrinciple,
           null,
           userPrinciple.getAuthorities()
         );
